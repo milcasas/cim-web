@@ -228,11 +228,11 @@ export default function HomePage() {
 
       <section className="bg-[#7b4a39] px-4 py-6 text-white">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-14 gap-y-4 text-sm font-semibold opacity-90">
-          <span>planos</span>
-          <span>renders 3D</span>
-          <span>anteproyecto</span>
-          <span>expediente</span>
-          <span>visualización</span>
+          <span>Planos</span>
+          <span>Renders 3D</span>
+          <span>Anteproyecto</span>
+          <span>Expediente</span>
+          <span>Visualización</span>
         </div>
       </section>
 
