@@ -279,7 +279,7 @@ export default function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -18 }}
                 transition={{ duration: 0.55, ease: [0.21, 0.47, 0.32, 0.98] }}
-                className="grid grid-cols-4 items-start gap-3 sm:gap-5 md:gap-10"
+                className="grid grid-cols-2 items-start gap-x-4 gap-y-8 sm:gap-6 md:grid-cols-4 md:gap-10"
               >
                 {activeProjects.map((project, index) => {
                   const projectNumber = galleryPage * gallerySize + index + 1
@@ -288,7 +288,7 @@ export default function HomePage() {
                     <Link
                       key={project.slug}
                       href={`/proyectos/${project.slug}`}
-                      className={`group block min-w-0 ${index % 2 === 1 ? "mt-14 md:mt-24" : ""}`}
+                      className={`group block min-w-0 ${index % 2 === 1 ? "mt-10 md:mt-24" : ""}`}
                       aria-label={`Ver proyecto ${project.title}`}
                     >
                       <motion.article
@@ -303,7 +303,7 @@ export default function HomePage() {
                             alt={`${project.title} - ${project.subtitle}`}
                             fill
                             className="object-cover transition duration-700 group-hover:scale-105"
-                            sizes="25vw"
+                            sizes="(max-width: 767px) 50vw, 25vw"
                           />
                         </div>
                         <h3 className="mt-3 text-[10px] font-light leading-4 text-[#252320] sm:text-sm md:mt-5 md:text-base md:leading-6">
