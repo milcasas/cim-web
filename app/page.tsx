@@ -366,12 +366,12 @@ export default function HomePage() {
       <section id="colaboradores" className="bg-[#fbfaf8] px-4 py-20 md:py-28">
         <div className="mx-auto max-w-6xl">
           <FadeIn>
-            <div className="mx-auto max-w-3xl text-center">
-              <p className="text-[10px] font-bold uppercase tracking-[0.32em] text-[#7b4a39]">
-                el talento que impulsa cada proyecto
+            <div className="mx-auto max-w-5xl text-center">
+              <p className="text-xs font-bold uppercase tracking-[0.32em] text-[#7b4a39] md:text-base">
+                El talento que impulsa cada proyecto
               </p>
-              <h2 className="mt-5 font-serif text-4xl font-light leading-tight text-[#181715] md:text-6xl">
-                Visionarios. Diseñamos. Edificamos.
+              <h2 className="mx-auto mt-5 max-w-5xl text-balance font-serif text-[clamp(2.05rem,4.7vw,4.65rem)] font-light leading-[1.05] text-[#181715]">
+                Diseñamos el lugar donde comienza tu historia.
               </h2>
               <div className="mx-auto mt-5 h-px w-14 bg-[#7b4a39]/35" />
             </div>
