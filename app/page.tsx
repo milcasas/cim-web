@@ -363,35 +363,35 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="colaboradores" className="bg-[#fbfaf8] px-4 py-20 md:py-28">
+      <section id="colaboradores" className="bg-[#fbfaf8] px-4 py-14 md:py-18">
         <div className="mx-auto max-w-6xl">
           <FadeIn>
             <div className="mx-auto max-w-5xl text-center">
               <p className="text-xs font-bold uppercase tracking-[0.32em] text-[#7b4a39] md:text-base">
                 El talento que impulsa cada proyecto
               </p>
-              <h2 className="mx-auto mt-5 max-w-5xl text-balance font-serif text-[clamp(2.05rem,4.7vw,4.65rem)] font-light leading-[1.05] text-[#181715]">
+              <h2 className="mx-auto mt-4 max-w-5xl text-balance font-serif text-[clamp(1.9rem,4.1vw,3.85rem)] font-light leading-[1.05] text-[#181715]">
                 Diseñamos el lugar donde comienza tu historia.
               </h2>
-              <div className="mx-auto mt-5 h-px w-14 bg-[#7b4a39]/35" />
+              <div className="mx-auto mt-4 h-px w-14 bg-[#7b4a39]/35" />
             </div>
           </FadeIn>
 
-          <div className="mt-12 grid gap-8 md:grid-cols-2 md:gap-10">
+          <div className="mx-auto mt-8 grid max-w-4xl gap-7 md:grid-cols-2 md:gap-9">
             {professionals.map((professional, index) => (
               <FadeIn key={professional.name} delay={index * 0.08}>
                 <article className="group text-center">
-                  <div className="relative mx-auto aspect-[4/5] max-h-[520px] overflow-hidden rounded-[4px] bg-[#ebe7e2] shadow-[0_28px_90px_rgba(37,35,32,0.08)]">
+                  <div className="relative mx-auto aspect-[4/5] w-full max-w-[330px] overflow-hidden rounded-[4px] bg-[#ebe7e2] shadow-[0_24px_70px_rgba(37,35,32,0.08)] md:max-w-[360px]">
                     <Image
                       src={professional.image}
                       alt={`${professional.name} - ${professional.role}`}
                       fill
                       className="object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0"
-                      sizes="(max-width: 768px) 100vw, 520px"
+                      sizes="(max-width: 768px) 86vw, 360px"
                     />
                   </div>
-                  <h3 className="mt-5 font-serif text-3xl font-light text-[#181715]">{professional.name}</h3>
-                  <p className="mt-3 text-[10px] font-bold uppercase tracking-[0.32em] text-[#6b6660]">{professional.role}</p>
+                  <h3 className="mt-4 font-serif text-2xl font-light text-[#181715] md:text-3xl">{professional.name}</h3>
+                  <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.32em] text-[#6b6660]">{professional.role}</p>
                 </article>
               </FadeIn>
             ))}
