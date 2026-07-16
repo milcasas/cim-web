@@ -11,9 +11,12 @@ import {
   ChevronLeft,
   ChevronRight,
   Box,
+  Facebook,
   ImageIcon,
+  Instagram,
   Menu,
   MessageCircle,
+  Music2,
   ShieldCheck,
 } from "lucide-react"
 import { projects } from "@/lib/projects"
@@ -66,6 +69,24 @@ const faqs = [
 
 const whatsappHref =
   "https://wa.me/51960240708?text=Hola%20Constructora%20CIM%2C%20quiero%20cotizar%20mi%20proyecto"
+
+const socialLinks = [
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/cim.constructora_/",
+    icon: Instagram,
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/ConstruyeInteligenteconCIM/reels/",
+    icon: Facebook,
+  },
+  {
+    label: "TikTok",
+    href: "https://www.tiktok.com/@cim.arquitectura",
+    icon: Music2,
+  },
+]
 
 function FadeIn({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
@@ -450,15 +471,29 @@ export default function HomePage() {
                 <p className="mt-6 max-w-sm text-sm leading-6 text-[#6b6660]">
                   Envía tu idea, terreno o referencia. Te ayudamos a convertirla en un proyecto claro para construir o vender.
                 </p>
-                <a
-                  href={whatsappHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-8 inline-grid size-20 place-items-center rounded-full bg-[#7b4a39] text-white transition hover:bg-[#252320]"
-                  aria-label="Contactar por WhatsApp"
-                >
-                  <MessageCircle size={28} />
-                </a>
+                <div className="mt-8 flex flex-wrap items-center gap-4">
+                  <a
+                    href={whatsappHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-grid size-20 place-items-center rounded-full bg-[#7b4a39] text-white transition hover:-translate-y-1 hover:bg-[#252320]"
+                    aria-label="Contactar por WhatsApp"
+                  >
+                    <MessageCircle size={28} />
+                  </a>
+                  {socialLinks.map(({ label, href, icon: Icon }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-grid size-16 place-items-center rounded-full border border-[#d8d3cc] bg-[#f4f3f1] text-[#252320] transition hover:-translate-y-1 hover:border-[#7b4a39] hover:bg-[#7b4a39] hover:text-white md:size-20"
+                      aria-label={`Abrir ${label} de Constructora CIM`}
+                    >
+                      <Icon size={26} strokeWidth={1.8} />
+                    </a>
+                  ))}
+                </div>
               </FadeIn>
             </div>
             <FadeIn delay={0.12}>
