@@ -15,6 +15,13 @@ export const metadata: Metadata = {
   description:
     "Constructora CIM desarrolla proyectos arquitectónicos, documentación técnica y renders para construir con mayor claridad.",
   generator: "Codex",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
   alternates: {
     canonical: "https://constructoracim.example/",
   },
