@@ -1,8 +1,8 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
-import { X } from "lucide-react"
+import { ChevronLeft, ChevronRight, X } from "lucide-react"
 
 type ProjectImageGalleryProps = {
   images: string[]
@@ -17,14 +17,21 @@ function imageLabel(index: number) {
 }
 
 export function ProjectImageGallery({ images, title }: ProjectImageGalleryProps) {
-  const [activeImage, setActiveImage] = useState<string | null>(null)
-  const [activeIndex, setActiveIndex] = useState(0)
+  const [activeIndex, setActiveIndex] = useState<number | null>(null)
+  const touchStartX = useRef<number | null>(null)
+  const activeImage = activeIndex === null ? null : images[activeIndex]
+
+  const closeViewer = () => setActiveIndex(null)
+  const showPrevious = () => setActiveIndex((index) => (index === null ? index : (index - 1 + images.length) % images.length))
+  const showNext = () => setActiveIndex((index) => (index === null ? index : (index + 1) % images.length))
 
   useEffect(() => {
-    if (!activeImage) return
+    if (activeIndex === null) return
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setActiveImage(null)
+      if (event.key === "Escape") closeViewer()
+      if (event.key === "ArrowLeft") showPrevious()
+      if (event.key === "ArrowRight") showNext()
     }
 
     document.body.style.overflow = "hidden"
@@ -34,11 +41,21 @@ export function ProjectImageGallery({ images, title }: ProjectImageGalleryProps)
       document.body.style.overflow = ""
       window.removeEventListener("keydown", onKeyDown)
     }
-  }, [activeImage])
+  }, [activeIndex])
 
-  const openImage = (image: string, index: number) => {
-    setActiveImage(image)
+  const openImage = (index: number) => {
     setActiveIndex(index)
+  }
+
+  const handleTouchEnd = (x: number) => {
+    if (touchStartX.current === null) return
+
+    const delta = touchStartX.current - x
+    touchStartX.current = null
+
+    if (Math.abs(delta) < 42) return
+    if (delta > 0) showNext()
+    else showPrevious()
   }
 
   return (
@@ -48,7 +65,7 @@ export function ProjectImageGallery({ images, title }: ProjectImageGalleryProps)
           <article key={`${image}-${index}`} className={index === 0 ? "md:col-span-2" : ""}>
             <button
               type="button"
-              onClick={() => openImage(image, index)}
+              onClick={() => openImage(index)}
               className={`group relative block w-full overflow-hidden rounded-[8px] border border-[#d8d3cc] bg-white text-left shadow-[0_25px_80px_rgba(37,35,32,0.08)] transition hover:-translate-y-1 hover:shadow-[0_30px_90px_rgba(37,35,32,0.14)] ${
                 index === 0 ? "aspect-[16/8]" : "aspect-[4/3]"
               }`}
@@ -78,7 +95,7 @@ export function ProjectImageGallery({ images, title }: ProjectImageGalleryProps)
           role="dialog"
           aria-modal="true"
           aria-label={`Imagen completa de ${title}`}
-          onClick={() => setActiveImage(null)}
+          onClick={closeViewer}
         >
           <button
             type="button"
@@ -86,21 +103,67 @@ export function ProjectImageGallery({ images, title }: ProjectImageGalleryProps)
             aria-label="Cerrar imagen"
             onClick={(event) => {
               event.stopPropagation()
-              setActiveImage(null)
+              closeViewer()
             }}
           >
             <X size={22} />
           </button>
 
-          <div className="relative h-[88vh] w-[94vw]" onClick={(event) => event.stopPropagation()}>
+          {images.length > 1 && (
+            <>
+              <button
+                type="button"
+                className="absolute left-3 top-1/2 z-10 grid size-12 -translate-y-1/2 place-items-center rounded-full bg-white/8 text-white/78 backdrop-blur-md transition hover:bg-white/18 hover:text-white md:left-8 md:size-16"
+                aria-label="Imagen anterior"
+                onClick={(event) => {
+                  event.stopPropagation()
+                  showPrevious()
+                }}
+              >
+                <ChevronLeft size={34} strokeWidth={2.5} />
+              </button>
+              <button
+                type="button"
+                className="absolute right-3 top-1/2 z-10 grid size-12 -translate-y-1/2 place-items-center rounded-full bg-white/8 text-white/78 backdrop-blur-md transition hover:bg-white/18 hover:text-white md:right-8 md:size-16"
+                aria-label="Imagen siguiente"
+                onClick={(event) => {
+                  event.stopPropagation()
+                  showNext()
+                }}
+              >
+                <ChevronRight size={34} strokeWidth={2.5} />
+              </button>
+            </>
+          )}
+
+          <div
+            className="relative h-[88vh] w-[94vw] touch-pan-y"
+            onClick={(event) => event.stopPropagation()}
+            onWheel={(event) => {
+              if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return
+              event.stopPropagation()
+              if (event.deltaX > 18) showNext()
+              if (event.deltaX < -18) showPrevious()
+            }}
+            onTouchStart={(event) => {
+              touchStartX.current = event.touches[0]?.clientX ?? null
+            }}
+            onTouchEnd={(event) => {
+              handleTouchEnd(event.changedTouches[0]?.clientX ?? 0)
+            }}
+          >
             <Image
               src={activeImage}
-              alt={`${title} imagen completa ${activeIndex + 1}`}
+              alt={`${title} imagen completa ${(activeIndex ?? 0) + 1}`}
               fill
               className="object-contain"
               sizes="94vw"
               priority
             />
+          </div>
+
+          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full bg-white/10 px-4 py-2 text-xs font-bold text-white/80 backdrop-blur-md">
+            {String((activeIndex ?? 0) + 1).padStart(2, "0")} / {String(images.length).padStart(2, "0")}
           </div>
         </div>
       )}
