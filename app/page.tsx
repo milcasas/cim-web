@@ -258,22 +258,6 @@ export default function HomePage() {
                   Explora nuestros proyectos arquitectónicos
                 </h2>
               </div>
-              <div className="mt-24 flex shrink-0 gap-3 md:mt-28">
-                <button
-                  className="grid size-10 place-items-center rounded-full border border-[#7b4a39] text-[#7b4a39] transition hover:bg-[#7b4a39] hover:text-white md:size-12"
-                  aria-label="Proyecto anterior"
-                  onClick={() => scrollGallery("prev")}
-                >
-                  <ChevronLeft size={24} strokeWidth={1.7} />
-                </button>
-                <button
-                  className="grid size-10 place-items-center rounded-full border border-[#cdbeb8] text-[#b29f98] transition hover:border-[#7b4a39] hover:bg-[#7b4a39] hover:text-white md:size-12"
-                  aria-label="Proyecto siguiente"
-                  onClick={() => scrollGallery("next")}
-                >
-                  <ChevronRight size={24} strokeWidth={1.7} />
-                </button>
-              </div>
             </div>
           </FadeIn>
 
@@ -283,14 +267,14 @@ export default function HomePage() {
 
           <div className="relative z-10 mt-20 md:mt-24">
             <button
-              className="absolute left-0 top-1/2 z-20 grid size-11 -translate-x-2 -translate-y-1/2 place-items-center rounded-full border border-[#7b4a39]/25 bg-[#f4f3f1]/85 text-[#7b4a39] shadow-[0_18px_55px_rgba(37,35,32,0.16)] backdrop-blur-md transition hover:bg-[#7b4a39] hover:text-white md:-translate-x-6 md:size-14"
+              className="absolute left-0 top-1/2 z-20 grid size-11 -translate-x-2 -translate-y-1/2 place-items-center rounded-full border border-[#7b4a39]/15 bg-[#f4f3f1]/35 text-[#7b4a39]/45 opacity-45 shadow-[0_18px_55px_rgba(37,35,32,0.08)] backdrop-blur-md transition duration-300 hover:border-[#7b4a39]/45 hover:bg-[#f4f3f1]/88 hover:text-[#7b4a39] hover:opacity-100 md:-translate-x-6 md:size-14"
               aria-label="Desplazar proyectos a la izquierda"
               onClick={() => scrollGallery("prev")}
             >
               <ChevronLeft size={26} strokeWidth={1.65} />
             </button>
             <button
-              className="absolute right-0 top-1/2 z-20 grid size-11 translate-x-2 -translate-y-1/2 place-items-center rounded-full border border-[#7b4a39]/25 bg-[#f4f3f1]/85 text-[#7b4a39] shadow-[0_18px_55px_rgba(37,35,32,0.16)] backdrop-blur-md transition hover:bg-[#7b4a39] hover:text-white md:size-14 md:translate-x-6"
+              className="absolute right-0 top-1/2 z-20 grid size-11 translate-x-2 -translate-y-1/2 place-items-center rounded-full border border-[#7b4a39]/15 bg-[#f4f3f1]/35 text-[#7b4a39]/45 opacity-45 shadow-[0_18px_55px_rgba(37,35,32,0.08)] backdrop-blur-md transition duration-300 hover:border-[#7b4a39]/45 hover:bg-[#f4f3f1]/88 hover:text-[#7b4a39] hover:opacity-100 md:size-14 md:translate-x-6"
               aria-label="Desplazar proyectos a la derecha"
               onClick={() => scrollGallery("next")}
             >
