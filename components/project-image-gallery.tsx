@@ -18,7 +18,8 @@ function imageLabel(index: number) {
 
 export function ProjectImageGallery({ images, title }: ProjectImageGalleryProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
-  const touchStartX = useRef<number | null>(null)
+  const viewerTrackRef = useRef<HTMLDivElement>(null)
+  const scrollSettleRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const activeImage = activeIndex === null ? null : images[activeIndex]
 
   const closeViewer = () => setActiveIndex(null)
@@ -43,19 +44,27 @@ export function ProjectImageGallery({ images, title }: ProjectImageGalleryProps)
     }
   }, [activeIndex])
 
+  useEffect(() => {
+    if (activeIndex === null) return
+
+    const slide = viewerTrackRef.current?.children[activeIndex] as HTMLElement | undefined
+    slide?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" })
+  }, [activeIndex])
+
   const openImage = (index: number) => {
     setActiveIndex(index)
   }
 
-  const handleTouchEnd = (x: number) => {
-    if (touchStartX.current === null) return
+  const updateIndexAfterScroll = () => {
+    const track = viewerTrackRef.current
+    if (!track) return
 
-    const delta = touchStartX.current - x
-    touchStartX.current = null
+    if (scrollSettleRef.current) window.clearTimeout(scrollSettleRef.current)
 
-    if (Math.abs(delta) < 42) return
-    if (delta > 0) showNext()
-    else showPrevious()
+    scrollSettleRef.current = window.setTimeout(() => {
+      const nextIndex = Math.round(track.scrollLeft / track.clientWidth)
+      setActiveIndex(Math.max(0, Math.min(images.length - 1, nextIndex)))
+    }, 110)
   }
 
   return (
@@ -137,29 +146,28 @@ export function ProjectImageGallery({ images, title }: ProjectImageGalleryProps)
           )}
 
           <div
-            className="relative h-[88vh] w-[94vw] touch-pan-y"
+            ref={viewerTrackRef}
+            className="viewer-scroll flex h-full w-full snap-x snap-mandatory overflow-x-auto scroll-smooth"
             onClick={(event) => event.stopPropagation()}
-            onWheel={(event) => {
-              if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return
-              event.stopPropagation()
-              if (event.deltaX > 18) showNext()
-              if (event.deltaX < -18) showPrevious()
-            }}
-            onTouchStart={(event) => {
-              touchStartX.current = event.touches[0]?.clientX ?? null
-            }}
-            onTouchEnd={(event) => {
-              handleTouchEnd(event.changedTouches[0]?.clientX ?? 0)
-            }}
+            onScroll={updateIndexAfterScroll}
           >
-            <Image
-              src={activeImage}
-              alt={`${title} imagen completa ${(activeIndex ?? 0) + 1}`}
-              fill
-              className="object-contain"
-              sizes="94vw"
-              priority
-            />
+            {images.map((image, index) => (
+              <div
+                key={`${image}-viewer-${index}`}
+                className="relative flex h-full w-full shrink-0 snap-center items-center justify-center px-4 py-16 md:px-20"
+              >
+                <div className="relative h-full w-full">
+                  <Image
+                    src={image}
+                    alt={`${title} imagen completa ${index + 1}`}
+                    fill
+                    className="object-contain"
+                    sizes="100vw"
+                    priority={index === activeIndex}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
 
           <div className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full bg-white/10 px-4 py-2 text-xs font-bold text-white/80 backdrop-blur-md">
