@@ -51,8 +51,8 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             <ArrowLeft size={14} />
             Galería
           </Link>
-          <Link href="/" className="text-lg font-black uppercase text-white">
-            CIM
+          <Link href="/" className="relative block h-8 w-[134px]" aria-label="Constructora CIM">
+            <Image src="/logos/cim-logo-white.png" alt="Constructora CIM" fill priority className="object-contain" sizes="134px" />
           </Link>
           <a
             href={whatsappHref}

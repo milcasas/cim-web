@@ -6,7 +6,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { motion, useScroll, useTransform } from "framer-motion"
 import {
-  Building2,
   Check,
   ChevronDown,
   ChevronLeft,
@@ -130,8 +129,12 @@ export default function HomePage() {
               Servicios
             </a>
           </div>
-          <a href="#inicio" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xl font-black uppercase text-white drop-shadow-[0_8px_24px_rgba(0,0,0,0.3)] md:text-3xl" aria-label="Constructora CIM">
-            CIM
+          <a
+            href="#inicio"
+            className="absolute left-1/2 top-1/2 block h-8 w-[134px] -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_8px_24px_rgba(0,0,0,0.32)] md:h-10 md:w-[168px]"
+            aria-label="Constructora CIM"
+          >
+            <Image src="/logos/cim-logo-white.png" alt="Constructora CIM" fill priority className="object-contain" sizes="168px" />
           </a>
           <div className="hidden items-center justify-end gap-9 text-sm font-semibold text-white/84 md:flex">
             <a className="transition hover:text-white" href="#faq">
@@ -475,13 +478,16 @@ export default function HomePage() {
 
       <footer className="px-4 py-8">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 border-t border-[#d8d3cc] pt-6 text-xs text-[#6b6660] md:flex-row">
-          <p>Constructora CIM - Arquitectura, diseño y construcción</p>
+          <div className="flex items-center gap-3">
+            <Image src="/logos/cim-mark-dark.png" alt="Constructora CIM" width={28} height={28} className="h-7 w-auto opacity-80" />
+            <p>Constructora CIM - Arquitectura, diseño y construcción</p>
+          </div>
           <div className="flex items-center gap-4">
             <span className="inline-flex items-center gap-2">
               <ShieldCheck size={14} /> Perú
             </span>
             <span className="inline-flex items-center gap-2">
-              <Building2 size={14} /> WhatsApp +51 960 240 708
+              <MessageCircle size={14} /> WhatsApp +51 960 240 708
             </span>
           </div>
         </div>
