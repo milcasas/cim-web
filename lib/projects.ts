@@ -192,6 +192,26 @@ export const projects: Project[] = [
     ],
     deliverables: ["Fachada 3D", "Interiores", "Sala comedor", "Materialidad", "Presentación visual"],
   },
+  {
+    slug: "lumina-tower",
+    title: "Lumina Tower",
+    subtitle: "Torre residencial",
+    category: "Residencial vertical",
+    location: "Perú",
+    year: "2026",
+    cover: "/cim-projects/lumina-tower/01.jpg",
+    stat: "09",
+    summary:
+      "Torre residencial con lenguaje vertical, balcones iluminados y una presencia urbana contemporánea pensada para destacar desde la primera vista.",
+    gallery: [
+      "/cim-projects/lumina-tower/01.jpg",
+      "/cim-projects/lumina-tower/02.jpg",
+      "/cim-projects/lumina-tower/03.jpg",
+      "/cim-projects/lumina-tower/04.jpg",
+      "/cim-projects/lumina-tower/05.jpg",
+    ],
+    deliverables: ["Fachada 3D", "Vistas exteriores", "Ingreso", "Balcones", "Presentación visual"],
+  },
 ]
 
 export function getProject(slug: string) {
