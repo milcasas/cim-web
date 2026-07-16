@@ -381,7 +381,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="colaboradores" className="bg-[#fbfaf8] px-4 py-14 md:py-18">
+      <section id="colaboradores" className="bg-[#f4f3f1] px-4 py-14 md:py-18">
         <div className="mx-auto max-w-6xl">
           <FadeIn>
             <div className="mx-auto max-w-5xl text-center">
