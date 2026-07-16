@@ -4,7 +4,7 @@ import type React from "react"
 import { useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import {
   Building2,
   Check,
@@ -84,15 +84,25 @@ function FadeIn({ children, delay = 0, className = "" }: { children: React.React
 
 export default function HomePage() {
   const [openFaq, setOpenFaq] = useState(0)
-  const [galleryPage, setGalleryPage] = useState(0)
   const heroRef = useRef<HTMLElement>(null)
+  const galleryTrackRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
   const heroTextOpacity = useTransform(scrollY, [0, 420], [1, 0])
   const heroTextY = useTransform(scrollY, [0, 420], [0, 88])
   const heroPanelOpacity = useTransform(scrollY, [0, 300], [1, 0])
-  const gallerySize = 4
-  const galleryPageCount = Math.ceil(projects.length / gallerySize)
-  const activeProjects = projects.slice(galleryPage * gallerySize, galleryPage * gallerySize + gallerySize)
+
+  const scrollGallery = (direction: "prev" | "next") => {
+    const track = galleryTrackRef.current
+    if (!track) return
+
+    const firstCard = track.querySelector<HTMLElement>("[data-project-card]")
+    const cardStep = firstCard ? firstCard.offsetWidth + 32 : track.clientWidth * 0.75
+
+    track.scrollBy({
+      left: direction === "next" ? cardStep * 2 : -cardStep * 2,
+      behavior: "smooth",
+    })
+  }
 
   return (
     <main className="site-shell min-h-screen bg-[#f4f3f1] text-[#252320]">
@@ -252,14 +262,14 @@ export default function HomePage() {
                 <button
                   className="grid size-10 place-items-center rounded-full border border-[#7b4a39] text-[#7b4a39] transition hover:bg-[#7b4a39] hover:text-white md:size-12"
                   aria-label="Proyecto anterior"
-                  onClick={() => setGalleryPage((page) => (page - 1 + galleryPageCount) % galleryPageCount)}
+                  onClick={() => scrollGallery("prev")}
                 >
                   <ChevronLeft size={24} strokeWidth={1.7} />
                 </button>
                 <button
                   className="grid size-10 place-items-center rounded-full border border-[#cdbeb8] text-[#b29f98] transition hover:border-[#7b4a39] hover:bg-[#7b4a39] hover:text-white md:size-12"
                   aria-label="Proyecto siguiente"
-                  onClick={() => setGalleryPage((page) => (page + 1) % galleryPageCount)}
+                  onClick={() => scrollGallery("next")}
                 >
                   <ChevronRight size={24} strokeWidth={1.7} />
                 </button>
@@ -271,51 +281,63 @@ export default function HomePage() {
             proyectos
           </div>
 
-          <div className="relative z-10 mt-20 min-h-[250px] md:mt-24 md:min-h-[430px]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={galleryPage}
-                initial={{ opacity: 0, y: 26 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -18 }}
-                transition={{ duration: 0.55, ease: [0.21, 0.47, 0.32, 0.98] }}
-                className="grid grid-cols-2 items-start gap-x-4 gap-y-8 sm:gap-6 md:grid-cols-4 md:gap-10"
-              >
-                {activeProjects.map((project, index) => {
-                  const projectNumber = galleryPage * gallerySize + index + 1
+          <div className="relative z-10 mt-20 md:mt-24">
+            <button
+              className="absolute left-0 top-1/2 z-20 grid size-11 -translate-x-2 -translate-y-1/2 place-items-center rounded-full border border-[#7b4a39]/25 bg-[#f4f3f1]/85 text-[#7b4a39] shadow-[0_18px_55px_rgba(37,35,32,0.16)] backdrop-blur-md transition hover:bg-[#7b4a39] hover:text-white md:-translate-x-6 md:size-14"
+              aria-label="Desplazar proyectos a la izquierda"
+              onClick={() => scrollGallery("prev")}
+            >
+              <ChevronLeft size={26} strokeWidth={1.65} />
+            </button>
+            <button
+              className="absolute right-0 top-1/2 z-20 grid size-11 translate-x-2 -translate-y-1/2 place-items-center rounded-full border border-[#7b4a39]/25 bg-[#f4f3f1]/85 text-[#7b4a39] shadow-[0_18px_55px_rgba(37,35,32,0.16)] backdrop-blur-md transition hover:bg-[#7b4a39] hover:text-white md:size-14 md:translate-x-6"
+              aria-label="Desplazar proyectos a la derecha"
+              onClick={() => scrollGallery("next")}
+            >
+              <ChevronRight size={26} strokeWidth={1.65} />
+            </button>
 
-                  return (
-                    <Link
-                      key={project.slug}
-                      href={`/proyectos/${project.slug}`}
-                      className={`group block min-w-0 ${index % 2 === 1 ? "mt-10 md:mt-24" : ""}`}
-                      aria-label={`Ver proyecto ${project.title}`}
-                    >
-                      <motion.article
-                        initial={{ opacity: 0, y: 26 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.65, delay: index * 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
-                        whileHover={{ y: -8 }}
-                      >
-                        <div className="relative aspect-[4/5] overflow-hidden rounded-[8px] bg-white shadow-[0_25px_80px_rgba(37,35,32,0.08)]">
-                          <Image
-                            src={project.cover}
-                            alt={`${project.title} - ${project.subtitle}`}
-                            fill
-                            className="object-cover transition duration-700 group-hover:scale-105"
-                            sizes="(max-width: 767px) 50vw, 25vw"
-                          />
-                        </div>
-                        <h3 className="mt-3 text-[10px] font-light leading-4 text-[#252320] sm:text-sm md:mt-5 md:text-base md:leading-6">
-                          <span className="font-semibold">{String(projectNumber).padStart(2, "0")}.</span>{" "}
-                          {project.title}
-                        </h3>
-                      </motion.article>
-                    </Link>
-                  )
-                })}
-              </motion.div>
-            </AnimatePresence>
+            <motion.div
+              ref={galleryTrackRef}
+              initial={{ opacity: 0, y: 26 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.65, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="project-scroll flex snap-x snap-mandatory items-start gap-4 overflow-x-auto overscroll-x-contain scroll-smooth px-1 pb-8 pt-1 sm:gap-6 md:gap-10 md:px-4"
+            >
+              {projects.map((project, index) => (
+                <Link
+                  key={project.slug}
+                  href={`/proyectos/${project.slug}`}
+                  data-project-card
+                  className={`group block w-[calc((100vw-3rem)/2)] min-w-[145px] max-w-[230px] shrink-0 snap-start sm:w-[42vw] sm:max-w-[270px] md:w-[260px] md:max-w-none lg:w-[300px] ${
+                    index % 2 === 1 ? "mt-10 md:mt-24" : ""
+                  }`}
+                  aria-label={`Ver proyecto ${project.title}`}
+                >
+                  <motion.article
+                    initial={{ opacity: 0, y: 26 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.65, delay: Math.min(index, 4) * 0.06, ease: [0.21, 0.47, 0.32, 0.98] }}
+                    whileHover={{ y: -8 }}
+                  >
+                    <div className="relative aspect-[4/5] overflow-hidden rounded-[8px] bg-white shadow-[0_25px_80px_rgba(37,35,32,0.08)]">
+                      <Image
+                        src={project.cover}
+                        alt={`${project.title} - ${project.subtitle}`}
+                        fill
+                        className="object-cover transition duration-700 group-hover:scale-105"
+                        sizes="(max-width: 767px) 50vw, (max-width: 1023px) 42vw, 300px"
+                      />
+                    </div>
+                    <h3 className="mt-3 text-[10px] font-light leading-4 text-[#252320] sm:text-sm md:mt-5 md:text-base md:leading-6">
+                      <span className="font-semibold">{String(index + 1).padStart(2, "0")}.</span> {project.title}
+                    </h3>
+                  </motion.article>
+                </Link>
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>
