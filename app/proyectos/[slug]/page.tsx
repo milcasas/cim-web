@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowLeft, MessageCircle } from "lucide-react"
+import { ProjectImageGallery } from "@/components/project-image-gallery"
 import { getProject, projects } from "@/lib/projects"
 
 const whatsappHref =
@@ -118,7 +119,8 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             </p>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-2">
+          <ProjectImageGallery images={projectGallery} title={project.title} />
+          <div className="hidden">
             {projectGallery.map((image, index) => (
               <article
                 key={`${image}-${index}`}
