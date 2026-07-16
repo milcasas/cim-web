@@ -120,7 +120,7 @@ export default function HomePage() {
       </a>
 
       <header className="absolute left-0 right-0 top-0 z-50">
-        <nav className="relative grid h-16 w-full grid-cols-3 items-center border-b border-white/14 bg-black/28 px-5 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl md:h-20 md:px-12">
+        <nav className="relative grid h-16 w-full grid-cols-[1fr_auto_1fr] items-center border-b border-white/14 bg-black/28 px-5 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl md:h-20 md:px-12">
           <div className="hidden items-center gap-9 text-sm font-semibold text-white/84 md:flex">
             <a className="transition hover:text-white" href="#proyectos">
               Proyectos
@@ -131,12 +131,12 @@ export default function HomePage() {
           </div>
           <a
             href="#inicio"
-            className="absolute left-1/2 top-1/2 block h-8 w-[134px] -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_8px_24px_rgba(0,0,0,0.32)] md:h-10 md:w-[168px]"
+            className="relative col-start-2 block h-9 w-[150px] justify-self-center drop-shadow-[0_8px_24px_rgba(0,0,0,0.32)] md:h-11 md:w-[184px]"
             aria-label="Constructora CIM"
           >
-            <Image src="/logos/cim-logo-white.png" alt="Constructora CIM" fill priority className="object-contain" sizes="168px" />
+            <Image src="/logos/cim-logo-white.png" alt="Constructora CIM" fill priority className="object-contain" sizes="184px" />
           </a>
-          <div className="hidden items-center justify-end gap-9 text-sm font-semibold text-white/84 md:flex">
+          <div className="hidden items-center justify-end gap-9 justify-self-end text-sm font-semibold text-white/84 md:flex">
             <a className="transition hover:text-white" href="#faq">
               FAQ
             </a>
