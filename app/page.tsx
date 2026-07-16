@@ -88,6 +88,19 @@ const socialLinks = [
   },
 ]
 
+const professionals = [
+  {
+    name: "Luis Salas",
+    role: "Director de proyectos",
+    image: "/professionals/01.jpg",
+  },
+  {
+    name: "Equipo CIM",
+    role: "Coordinación técnica",
+    image: "/professionals/02.jpg",
+  },
+]
+
 function FadeIn({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
     <motion.div
@@ -346,6 +359,42 @@ export default function HomePage() {
                 </Link>
               ))}
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <section id="colaboradores" className="bg-[#fbfaf8] px-4 py-20 md:py-28">
+        <div className="mx-auto max-w-6xl">
+          <FadeIn>
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="text-[10px] font-bold uppercase tracking-[0.32em] text-[#7b4a39]">
+                el talento que impulsa cada proyecto
+              </p>
+              <h2 className="mt-5 font-serif text-4xl font-light leading-tight text-[#181715] md:text-6xl">
+                Visionarios. Diseñamos. Edificamos.
+              </h2>
+              <div className="mx-auto mt-5 h-px w-14 bg-[#7b4a39]/35" />
+            </div>
+          </FadeIn>
+
+          <div className="mt-12 grid gap-8 md:grid-cols-2 md:gap-10">
+            {professionals.map((professional, index) => (
+              <FadeIn key={professional.name} delay={index * 0.08}>
+                <article className="group text-center">
+                  <div className="relative mx-auto aspect-[4/5] max-h-[520px] overflow-hidden rounded-[4px] bg-[#ebe7e2] shadow-[0_28px_90px_rgba(37,35,32,0.08)]">
+                    <Image
+                      src={professional.image}
+                      alt={`${professional.name} - ${professional.role}`}
+                      fill
+                      className="object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0"
+                      sizes="(max-width: 768px) 100vw, 520px"
+                    />
+                  </div>
+                  <h3 className="mt-5 font-serif text-3xl font-light text-[#181715]">{professional.name}</h3>
+                  <p className="mt-3 text-[10px] font-bold uppercase tracking-[0.32em] text-[#6b6660]">{professional.role}</p>
+                </article>
+              </FadeIn>
+            ))}
           </div>
         </div>
       </section>
