@@ -90,32 +90,19 @@ const socialLinks = [
 
 const professionals = [
   {
-    name: "Luis Salas",
-    role: "Director de proyectos",
+    name: "Alejandro Mejía",
+    role: "Fundador",
     image: "/professionals/01.jpg",
   },
   {
-    name: "Equipo CIM",
-    role: "Coordinación técnica",
+    name: "Christian Cruz",
+    role: "Arquitecto",
     image: "/professionals/02.jpg",
   },
   {
-    name: "Arquitectura",
-    role: "Diseño y anteproyecto",
-    image: "/logos/cim-mark-dark.png",
-    isTeamArea: true,
-  },
-  {
-    name: "Visualización 3D",
-    role: "Renders y recorridos",
-    image: "/logos/cim-mark-dark.png",
-    isTeamArea: true,
-  },
-  {
-    name: "Construcción",
-    role: "Obra y acabados",
-    image: "/logos/cim-mark-dark.png",
-    isTeamArea: true,
+    name: "Jaruth Salas",
+    role: "Ing. civil",
+    image: "/professionals/03.jpg",
   },
 ]
 
@@ -395,17 +382,17 @@ export default function HomePage() {
             </div>
           </FadeIn>
 
-          <div className="mx-auto mt-7 grid max-w-6xl grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
+          <div className="mx-auto mt-7 grid max-w-4xl grid-cols-1 gap-5 sm:grid-cols-3 lg:gap-8">
             {professionals.map((professional, index) => (
               <FadeIn key={professional.name} delay={index * 0.08}>
                 <article className="group text-center">
-                  <div className="relative mx-auto aspect-[4/5] w-full max-w-[170px] overflow-hidden rounded-[4px] bg-[#ebe7e2] shadow-[0_20px_55px_rgba(37,35,32,0.08)] sm:max-w-[190px] lg:max-w-[205px]">
+                  <div className="relative mx-auto aspect-[4/5] w-full max-w-[190px] overflow-hidden rounded-[4px] bg-[#ebe7e2] shadow-[0_20px_55px_rgba(37,35,32,0.08)] sm:max-w-[210px] lg:max-w-[230px]">
                     <Image
                       src={professional.image}
                       alt={`${professional.name} - ${professional.role}`}
                       fill
-                      className={`${professional.isTeamArea ? "object-contain p-10 opacity-70" : "object-cover grayscale"} transition duration-700 group-hover:scale-105 group-hover:grayscale-0`}
-                      sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 205px"
+                      className="object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0"
+                      sizes="(max-width: 640px) 80vw, (max-width: 1024px) 30vw, 230px"
                     />
                   </div>
                   <h3 className="mt-3 font-serif text-xl font-light text-[#181715] md:text-2xl">{professional.name}</h3>
