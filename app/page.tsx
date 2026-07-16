@@ -386,13 +386,13 @@ export default function HomePage() {
             {professionals.map((professional, index) => (
               <FadeIn key={professional.name} delay={index * 0.08}>
                 <article className="group text-center">
-                  <div className="relative mx-auto aspect-[4/5] w-full max-w-[190px] overflow-hidden rounded-[4px] bg-[#ebe7e2] shadow-[0_20px_55px_rgba(37,35,32,0.08)] sm:max-w-[210px] lg:max-w-[230px]">
+                  <div className="relative mx-auto aspect-[4/5] w-full max-w-[210px] overflow-hidden rounded-[4px] bg-[#ebe7e2] shadow-[0_20px_55px_rgba(37,35,32,0.08)]">
                     <Image
                       src={professional.image}
                       alt={`${professional.name} - ${professional.role}`}
                       fill
-                      className="object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0"
-                      sizes="(max-width: 640px) 80vw, (max-width: 1024px) 30vw, 230px"
+                      className="object-cover object-center grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0"
+                      sizes="210px"
                     />
                   </div>
                   <h3 className="mt-3 font-serif text-xl font-light text-[#181715] md:text-2xl">{professional.name}</h3>
