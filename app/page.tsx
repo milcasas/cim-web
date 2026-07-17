@@ -104,6 +104,11 @@ const professionals = [
     role: "Ing. civil",
     image: "/professionals/03.jpg",
   },
+  {
+    name: "Michelle",
+    role: "Arquitecta",
+    image: "/professionals/04.jpg",
+  },
 ]
 
 function FadeIn({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -382,25 +387,51 @@ export default function HomePage() {
             </div>
           </FadeIn>
 
-          <div className="mx-auto mt-7 grid max-w-4xl grid-cols-1 gap-5 sm:grid-cols-3 lg:gap-8">
+          <div className="mx-auto mt-7 grid max-w-5xl grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-4 lg:gap-7">
             {professionals.map((professional, index) => (
               <FadeIn key={professional.name} delay={index * 0.08}>
                 <article className="group text-center">
-                  <div className="relative mx-auto aspect-[4/5] w-full max-w-[210px] overflow-hidden rounded-[4px] bg-[#ebe7e2] shadow-[0_20px_55px_rgba(37,35,32,0.08)]">
+                  <div className="relative mx-auto aspect-[4/5] w-full max-w-[185px] overflow-hidden rounded-[4px] bg-[#ebe7e2] shadow-[0_20px_55px_rgba(37,35,32,0.08)]">
                     <Image
                       src={professional.image}
                       alt={`${professional.name} - ${professional.role}`}
                       fill
                       className="object-cover object-center grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0"
-                      sizes="210px"
+                      sizes="(max-width: 640px) 45vw, 185px"
                     />
                   </div>
-                  <h3 className="mt-3 font-serif text-xl font-light text-[#181715] md:text-2xl">{professional.name}</h3>
-                  <p className="mt-2 text-[9px] font-bold uppercase tracking-[0.24em] text-[#6b6660]">{professional.role}</p>
+                  <h3 className="mt-3 font-serif text-lg font-light text-[#181715] md:text-xl">{professional.name}</h3>
+                  <p className="mt-2 text-[8px] font-bold uppercase tracking-[0.24em] text-[#6b6660] md:text-[9px]">{professional.role}</p>
                 </article>
               </FadeIn>
             ))}
           </div>
+
+          <FadeIn delay={0.18}>
+            <div className="mx-auto mt-10 max-w-5xl overflow-hidden rounded-[6px] bg-[#181715] shadow-[0_30px_90px_rgba(37,35,32,0.16)] md:mt-14">
+              <div className="relative min-h-[260px] md:aspect-[21/8]">
+                <Image
+                  src="/professionals/construimos-tus-suenos.jpg"
+                  alt="Equipo CIM en obra"
+                  fill
+                  className="object-cover object-center"
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-black/10" />
+                <div className="absolute inset-0 flex items-end p-6 md:items-center md:p-10">
+                  <div className="max-w-xl text-white">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.32em] text-white/70">Equipo CIM</p>
+                    <h3 className="mt-3 font-serif text-[clamp(2.2rem,5vw,5rem)] font-light leading-[0.95]">
+                      Construimos tus sueños.
+                    </h3>
+                    <p className="mt-4 max-w-md text-sm leading-6 text-white/80 md:text-base">
+                      Arquitectura, obra y seguimiento reunidos para convertir cada idea en un proyecto claro, funcional y bien ejecutado.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
