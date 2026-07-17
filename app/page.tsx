@@ -126,6 +126,7 @@ const visualSlides = [
     description:
       "La visualización se confirma en campo: planos, decisiones y seguimiento trabajan juntos para que cada avance conserve la intención del proyecto.",
     image: "/professionals/construimos-tus-suenos.jpg",
+    tags: ["obra", "seguimiento", "ejecución"],
   },
 ]
 
@@ -508,49 +509,52 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#181715] text-white">
-        <button
-          className="absolute left-4 top-1/2 z-20 grid size-10 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-black/20 text-white/45 opacity-55 backdrop-blur-md transition duration-300 hover:bg-black/55 hover:text-white hover:opacity-100 md:left-8 md:size-12"
-          aria-label="Ver slide anterior"
-          onClick={() => scrollVisual("prev")}
-        >
-          <ChevronLeft size={24} strokeWidth={1.7} />
-        </button>
-        <button
-          className="absolute right-4 top-1/2 z-20 grid size-10 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-black/20 text-white/45 opacity-55 backdrop-blur-md transition duration-300 hover:bg-black/55 hover:text-white hover:opacity-100 md:right-8 md:size-12"
-          aria-label="Ver slide siguiente"
-          onClick={() => scrollVisual("next")}
-        >
-          <ChevronRight size={24} strokeWidth={1.7} />
-        </button>
+      <section className="bg-[#181715] px-4 py-16 text-white md:py-24">
+        <div className="relative mx-auto max-w-5xl">
+          <button
+            className="absolute left-3 top-1/2 z-20 grid size-10 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-black/20 text-white/45 opacity-55 backdrop-blur-md transition duration-300 hover:bg-black/55 hover:text-white hover:opacity-100 md:-left-6 md:size-12"
+            aria-label="Ver slide anterior"
+            onClick={() => scrollVisual("prev")}
+          >
+            <ChevronLeft size={24} strokeWidth={1.7} />
+          </button>
+          <button
+            className="absolute right-3 top-1/2 z-20 grid size-10 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-black/20 text-white/45 opacity-55 backdrop-blur-md transition duration-300 hover:bg-black/55 hover:text-white hover:opacity-100 md:-right-6 md:size-12"
+            aria-label="Ver slide siguiente"
+            onClick={() => scrollVisual("next")}
+          >
+            <ChevronRight size={24} strokeWidth={1.7} />
+          </button>
 
-        <div
-          ref={visualTrackRef}
-          className="project-scroll flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain scroll-smooth"
-        >
-          {visualSlides.map((slide, index) => (
-            <article key={slide.title} className="relative min-h-[86vh] w-full shrink-0 snap-center overflow-hidden px-4 py-20 md:py-28">
-              <Image
-                src={slide.image}
-                alt={slide.title}
-                fill
-                className="object-cover object-center opacity-75"
-                sizes="100vw"
-                priority={index === 0}
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/78 via-black/32 to-black/18" />
-              <div className="relative mx-auto grid min-h-[calc(86vh-10rem)] max-w-6xl gap-10 md:grid-cols-[0.9fr_1fr] md:items-center">
-                <FadeIn>
-                  <span className="inline-flex rounded-full bg-white px-4 py-2 text-[10px] font-bold uppercase text-[#252320]">
-                    {slide.eyebrow}
-                  </span>
-                  <h2 className="mt-6 text-[clamp(2.8rem,6.2vw,6.2rem)] font-light leading-[1.02] text-white">
-                    {slide.title}
-                  </h2>
-                </FadeIn>
-                <FadeIn delay={0.12}>
-                  <p className="max-w-xl text-lg leading-8 text-white/84 md:text-xl">{slide.description}</p>
-                  {"tags" in slide && slide.tags && (
+          <div
+            ref={visualTrackRef}
+            className="project-scroll flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain scroll-smooth rounded-[10px]"
+          >
+            {visualSlides.map((slide, index) => (
+              <article
+                key={slide.title}
+                className="relative min-h-[560px] w-full shrink-0 snap-center overflow-hidden rounded-[10px] border border-white/12 bg-black/30 shadow-[0_30px_90px_rgba(0,0,0,0.34)] md:aspect-[16/9] md:min-h-0"
+              >
+                <Image
+                  src={slide.image}
+                  alt={slide.title}
+                  fill
+                  className="object-cover object-center opacity-76"
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                  priority={index === 0}
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/78 via-black/38 to-black/16" />
+                <div className="absolute inset-0 grid items-end p-7 md:grid-cols-[0.95fr_1fr] md:items-center md:gap-10 md:p-12">
+                  <div>
+                    <span className="inline-flex rounded-full bg-white px-4 py-2 text-[10px] font-bold uppercase text-[#252320]">
+                      {slide.eyebrow}
+                    </span>
+                    <h2 className="mt-6 max-w-[620px] text-[clamp(2.65rem,5.2vw,4.9rem)] font-light leading-[1.02] text-white">
+                      {slide.title}
+                    </h2>
+                  </div>
+                  <div className="mt-8 md:mt-0">
+                    <p className="max-w-xl text-base leading-7 text-white/84 md:text-lg md:leading-8">{slide.description}</p>
                     <div className="mt-8 flex flex-wrap gap-3">
                       {slide.tags.map((tag) => (
                         <span key={tag} className="rounded-full border border-white/30 px-4 py-2 text-xs">
@@ -558,22 +562,22 @@ export default function HomePage() {
                         </span>
                       ))}
                     </div>
-                  )}
-                </FadeIn>
-              </div>
-            </article>
-          ))}
-        </div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
 
-        <div className="absolute bottom-7 left-1/2 z-20 flex -translate-x-1/2 gap-2">
-          {visualSlides.map((slide, index) => (
-            <button
-              key={slide.title}
-              className={`h-1.5 rounded-full transition-all ${visualSlideIndex === index ? "w-8 bg-white" : "w-2 bg-white/35"}`}
-              aria-label={`Ir al slide ${index + 1}`}
-              onClick={() => setVisualSlideIndex(index)}
-            />
-          ))}
+          <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 gap-2">
+            {visualSlides.map((slide, index) => (
+              <button
+                key={slide.title}
+                className={`h-1.5 rounded-full transition-all ${visualSlideIndex === index ? "w-8 bg-white" : "w-2 bg-white/35"}`}
+                aria-label={`Ir al slide ${index + 1}`}
+                onClick={() => setVisualSlideIndex(index)}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
