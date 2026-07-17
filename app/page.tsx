@@ -184,6 +184,7 @@ export default function HomePage() {
   const [visualSlideIndex, setVisualSlideIndex] = useState(0)
   const heroRef = useRef<HTMLElement>(null)
   const galleryTrackRef = useRef<HTMLDivElement>(null)
+  const professionalsTrackRef = useRef<HTMLDivElement>(null)
   const visualTrackRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
   const heroTextOpacity = useTransform(scrollY, [0, 420], [1, 0])
@@ -199,6 +200,19 @@ export default function HomePage() {
 
     track.scrollBy({
       left: direction === "next" ? cardStep * 2 : -cardStep * 2,
+      behavior: "smooth",
+    })
+  }
+
+  const scrollProfessionals = (direction: "prev" | "next") => {
+    const track = professionalsTrackRef.current
+    if (!track) return
+
+    const firstCard = track.querySelector<HTMLElement>("[data-professional-card]")
+    const cardStep = firstCard ? firstCard.offsetWidth + 28 : track.clientWidth * 0.45
+
+    track.scrollBy({
+      left: direction === "next" ? cardStep * 3 : -cardStep * 3,
       behavior: "smooth",
     })
   }
@@ -468,24 +482,44 @@ export default function HomePage() {
             </div>
           </FadeIn>
 
-          <div className="project-scroll mx-auto mt-8 flex max-w-6xl snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain scroll-smooth px-1 pb-8 pt-1 md:gap-7">
-            {professionals.map((professional, index) => (
-              <FadeIn key={professional.name} delay={Math.min(index, 6) * 0.05} className="shrink-0 snap-start">
-                <article className="group w-[156px] shrink-0 snap-start text-center md:w-[168px]">
-                  <div className="relative mx-auto aspect-[4/5] w-full overflow-hidden rounded-[4px] bg-[#ebe7e2] shadow-[0_18px_48px_rgba(37,35,32,0.07)]">
-                    <Image
-                      src={professional.image}
-                      alt={`${professional.name} - ${professional.role}`}
-                      fill
-                      className="object-cover object-center grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0"
-                      sizes="(max-width: 767px) 156px, 168px"
-                    />
-                  </div>
-                  <h3 className="mt-3 font-serif text-base font-light text-[#181715] md:text-lg">{professional.name}</h3>
-                  <p className="mx-auto mt-2 max-w-[170px] text-[8px] font-bold uppercase leading-4 tracking-[0.22em] text-[#6b6660]">{professional.role}</p>
-                </article>
-              </FadeIn>
-            ))}
+          <div className="relative mx-auto mt-8 max-w-6xl">
+            <button
+              className="absolute left-0 top-[42%] z-20 grid size-10 -translate-x-2 -translate-y-1/2 place-items-center rounded-full border border-[#7b4a39]/15 bg-[#f4f3f1]/35 text-[#7b4a39]/45 opacity-45 shadow-[0_18px_55px_rgba(37,35,32,0.08)] backdrop-blur-md transition duration-300 hover:border-[#7b4a39]/45 hover:bg-[#f4f3f1]/88 hover:text-[#7b4a39] hover:opacity-100 md:-translate-x-6 md:size-12"
+              aria-label="Desplazar colaboradores a la izquierda"
+              onClick={() => scrollProfessionals("prev")}
+            >
+              <ChevronLeft size={24} strokeWidth={1.65} />
+            </button>
+            <button
+              className="absolute right-0 top-[42%] z-20 grid size-10 translate-x-2 -translate-y-1/2 place-items-center rounded-full border border-[#7b4a39]/15 bg-[#f4f3f1]/35 text-[#7b4a39]/45 opacity-45 shadow-[0_18px_55px_rgba(37,35,32,0.08)] backdrop-blur-md transition duration-300 hover:border-[#7b4a39]/45 hover:bg-[#f4f3f1]/88 hover:text-[#7b4a39] hover:opacity-100 md:size-12 md:translate-x-6"
+              aria-label="Desplazar colaboradores a la derecha"
+              onClick={() => scrollProfessionals("next")}
+            >
+              <ChevronRight size={24} strokeWidth={1.65} />
+            </button>
+
+            <div
+              ref={professionalsTrackRef}
+              className="project-scroll flex snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain scroll-smooth px-1 pb-8 pt-1 md:gap-7"
+            >
+              {professionals.map((professional, index) => (
+                <FadeIn key={professional.name} delay={Math.min(index, 6) * 0.05} className="shrink-0 snap-start">
+                  <article data-professional-card className="group w-[156px] shrink-0 snap-start text-center md:w-[168px]">
+                    <div className="relative mx-auto aspect-[4/5] w-full overflow-hidden rounded-[4px] bg-[#ebe7e2] shadow-[0_18px_48px_rgba(37,35,32,0.07)]">
+                      <Image
+                        src={professional.image}
+                        alt={`${professional.name} - ${professional.role}`}
+                        fill
+                        className="object-cover object-center grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0"
+                        sizes="(max-width: 767px) 156px, 168px"
+                      />
+                    </div>
+                    <h3 className="mt-3 font-serif text-base font-light text-[#181715] md:text-lg">{professional.name}</h3>
+                    <p className="mx-auto mt-2 max-w-[170px] text-[8px] font-bold uppercase leading-4 tracking-[0.22em] text-[#6b6660]">{professional.role}</p>
+                  </article>
+                </FadeIn>
+              ))}
+            </div>
           </div>
 
         </div>
