@@ -101,13 +101,48 @@ const professionals = [
   },
   {
     name: "Jaruth Salas",
-    role: "Ing. civil",
+    role: "Arquitecta",
     image: "/professionals/03.jpg",
   },
   {
     name: "Michelle",
     role: "Arquitecta",
     image: "/professionals/04.jpg",
+  },
+  {
+    name: "Almendra Loyola",
+    role: "Arquitecta",
+    image: "/professionals/09.jpg",
+  },
+  {
+    name: "Carolina Katto",
+    role: "Arquitecta",
+    image: "/professionals/10.jpg",
+  },
+  {
+    name: "Gonzalo Cabrera",
+    role: "Ing. civil / estructuras",
+    image: "/professionals/08.jpg",
+  },
+  {
+    name: "Jorge Montañez",
+    role: "Ing. civil",
+    image: "/professionals/11.jpg",
+  },
+  {
+    name: "Jesús Jara",
+    role: "Asesor comercial",
+    image: "/professionals/05.jpg",
+  },
+  {
+    name: "Gustavo Mora",
+    role: "Asesor comercial",
+    image: "/professionals/06.jpg",
+  },
+  {
+    name: "Rodrigo Flores",
+    role: "Asesor comercial",
+    image: "/professionals/07.jpg",
   },
 ]
 
@@ -433,21 +468,21 @@ export default function HomePage() {
             </div>
           </FadeIn>
 
-          <div className="mx-auto mt-7 grid max-w-5xl grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-4 lg:gap-7">
+          <div className="mx-auto mt-8 grid max-w-6xl grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:gap-x-6">
             {professionals.map((professional, index) => (
-              <FadeIn key={professional.name} delay={index * 0.08}>
+              <FadeIn key={professional.name} delay={Math.min(index, 6) * 0.05}>
                 <article className="group text-center">
-                  <div className="relative mx-auto aspect-[4/5] w-full max-w-[185px] overflow-hidden rounded-[4px] bg-[#ebe7e2] shadow-[0_20px_55px_rgba(37,35,32,0.08)]">
+                  <div className="relative mx-auto aspect-[4/5] w-full max-w-[156px] overflow-hidden rounded-[4px] bg-[#ebe7e2] shadow-[0_18px_48px_rgba(37,35,32,0.07)]">
                     <Image
                       src={professional.image}
                       alt={`${professional.name} - ${professional.role}`}
                       fill
                       className="object-cover object-center grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0"
-                      sizes="(max-width: 640px) 45vw, 185px"
+                      sizes="(max-width: 640px) 45vw, 156px"
                     />
                   </div>
-                  <h3 className="mt-3 font-serif text-lg font-light text-[#181715] md:text-xl">{professional.name}</h3>
-                  <p className="mt-2 text-[8px] font-bold uppercase tracking-[0.24em] text-[#6b6660] md:text-[9px]">{professional.role}</p>
+                  <h3 className="mt-3 font-serif text-base font-light text-[#181715] md:text-lg">{professional.name}</h3>
+                  <p className="mx-auto mt-2 max-w-[170px] text-[8px] font-bold uppercase leading-4 tracking-[0.22em] text-[#6b6660]">{professional.role}</p>
                 </article>
               </FadeIn>
             ))}
