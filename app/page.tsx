@@ -468,17 +468,17 @@ export default function HomePage() {
             </div>
           </FadeIn>
 
-          <div className="mx-auto mt-8 grid max-w-6xl grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:gap-x-6">
+          <div className="project-scroll mx-auto mt-8 flex max-w-6xl snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain scroll-smooth px-1 pb-8 pt-1 md:gap-7">
             {professionals.map((professional, index) => (
-              <FadeIn key={professional.name} delay={Math.min(index, 6) * 0.05}>
-                <article className="group text-center">
-                  <div className="relative mx-auto aspect-[4/5] w-full max-w-[156px] overflow-hidden rounded-[4px] bg-[#ebe7e2] shadow-[0_18px_48px_rgba(37,35,32,0.07)]">
+              <FadeIn key={professional.name} delay={Math.min(index, 6) * 0.05} className="shrink-0 snap-start">
+                <article className="group w-[156px] shrink-0 snap-start text-center md:w-[168px]">
+                  <div className="relative mx-auto aspect-[4/5] w-full overflow-hidden rounded-[4px] bg-[#ebe7e2] shadow-[0_18px_48px_rgba(37,35,32,0.07)]">
                     <Image
                       src={professional.image}
                       alt={`${professional.name} - ${professional.role}`}
                       fill
                       className="object-cover object-center grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0"
-                      sizes="(max-width: 640px) 45vw, 156px"
+                      sizes="(max-width: 767px) 156px, 168px"
                     />
                   </div>
                   <h3 className="mt-3 font-serif text-base font-light text-[#181715] md:text-lg">{professional.name}</h3>
