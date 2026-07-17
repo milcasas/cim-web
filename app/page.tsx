@@ -209,10 +209,10 @@ export default function HomePage() {
     if (!track) return
 
     const firstCard = track.querySelector<HTMLElement>("[data-professional-card]")
-    const cardStep = firstCard ? firstCard.offsetWidth + 28 : track.clientWidth * 0.45
+    const cardStep = firstCard ? firstCard.offsetWidth + 36 : track.clientWidth * 0.75
 
     track.scrollBy({
-      left: direction === "next" ? cardStep * 3 : -cardStep * 3,
+      left: direction === "next" ? cardStep * 2 : -cardStep * 2,
       behavior: "smooth",
     })
   }
@@ -468,54 +468,59 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="colaboradores" className="bg-[#f4f3f1] px-4 py-14 md:py-18">
-        <div className="mx-auto max-w-6xl">
+      <section id="colaboradores" className="bg-[#f4f3f1] px-4 py-16 md:py-24">
+        <div className="mx-auto max-w-7xl">
           <FadeIn>
-            <div className="mx-auto max-w-5xl text-center">
-              <p className="text-xs font-bold uppercase tracking-[0.32em] text-[#7b4a39] md:text-base">
-                El talento que impulsa cada proyecto
+            <div className="max-w-6xl">
+              <p className="inline-flex items-center gap-3 text-sm font-medium text-[#7b4a39] md:text-base">
+                <span className="size-2.5 rounded-full bg-[#7b4a39]" />
+                Nuestro equipo
               </p>
-              <h2 className="mx-auto mt-4 max-w-5xl text-balance font-serif text-[clamp(1.9rem,4.1vw,3.85rem)] font-light leading-[1.05] text-[#181715]">
-                Diseñamos el lugar donde comienza tu historia.
+              <h2 className="mt-12 max-w-6xl font-serif text-[clamp(3.4rem,8vw,7.4rem)] font-light leading-[0.92] text-[#181715]">
+                Conozca al equipo de CIM
               </h2>
-              <div className="mx-auto mt-4 h-px w-14 bg-[#7b4a39]/35" />
+              <p className="mt-8 max-w-4xl text-xl leading-8 text-[#5d514b] md:text-3xl md:leading-10">
+                Arquitectos, ingenieros y asesores que transforman ideas en espacios únicos.
+              </p>
             </div>
           </FadeIn>
 
-          <div className="relative mx-auto mt-8 max-w-6xl">
+          <div className="relative mx-auto mt-14 max-w-7xl">
             <button
-              className="absolute left-0 top-[42%] z-20 grid size-10 -translate-x-2 -translate-y-1/2 place-items-center rounded-full border border-[#7b4a39]/15 bg-[#f4f3f1]/35 text-[#7b4a39]/45 opacity-45 shadow-[0_18px_55px_rgba(37,35,32,0.08)] backdrop-blur-md transition duration-300 hover:border-[#7b4a39]/45 hover:bg-[#f4f3f1]/88 hover:text-[#7b4a39] hover:opacity-100 md:-translate-x-6 md:size-12"
+              className="absolute left-0 top-1/2 z-20 grid size-11 -translate-x-2 -translate-y-1/2 place-items-center rounded-full border border-[#7b4a39]/15 bg-[#f4f3f1]/35 text-[#7b4a39]/45 opacity-45 shadow-[0_18px_55px_rgba(37,35,32,0.08)] backdrop-blur-md transition duration-300 hover:border-[#7b4a39]/45 hover:bg-[#f4f3f1]/88 hover:text-[#7b4a39] hover:opacity-100 md:-translate-x-6 md:size-14"
               aria-label="Desplazar colaboradores a la izquierda"
               onClick={() => scrollProfessionals("prev")}
             >
-              <ChevronLeft size={24} strokeWidth={1.65} />
+              <ChevronLeft size={27} strokeWidth={1.55} />
             </button>
             <button
-              className="absolute right-0 top-[42%] z-20 grid size-10 translate-x-2 -translate-y-1/2 place-items-center rounded-full border border-[#7b4a39]/15 bg-[#f4f3f1]/35 text-[#7b4a39]/45 opacity-45 shadow-[0_18px_55px_rgba(37,35,32,0.08)] backdrop-blur-md transition duration-300 hover:border-[#7b4a39]/45 hover:bg-[#f4f3f1]/88 hover:text-[#7b4a39] hover:opacity-100 md:size-12 md:translate-x-6"
+              className="absolute right-0 top-1/2 z-20 grid size-11 translate-x-2 -translate-y-1/2 place-items-center rounded-full border border-[#7b4a39]/15 bg-[#f4f3f1]/35 text-[#7b4a39]/45 opacity-45 shadow-[0_18px_55px_rgba(37,35,32,0.08)] backdrop-blur-md transition duration-300 hover:border-[#7b4a39]/45 hover:bg-[#f4f3f1]/88 hover:text-[#7b4a39] hover:opacity-100 md:size-14 md:translate-x-6"
               aria-label="Desplazar colaboradores a la derecha"
               onClick={() => scrollProfessionals("next")}
             >
-              <ChevronRight size={24} strokeWidth={1.65} />
+              <ChevronRight size={27} strokeWidth={1.55} />
             </button>
 
             <div
               ref={professionalsTrackRef}
-              className="project-scroll flex snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain scroll-smooth px-1 pb-8 pt-1 md:gap-7"
+              className="project-scroll flex snap-x snap-mandatory gap-7 overflow-x-auto overscroll-x-contain scroll-smooth px-1 pb-10 pt-1 md:gap-9"
             >
               {professionals.map((professional, index) => (
                 <FadeIn key={professional.name} delay={Math.min(index, 6) * 0.05} className="shrink-0 snap-start">
-                  <article data-professional-card className="group w-[156px] shrink-0 snap-start text-center md:w-[168px]">
-                    <div className="relative mx-auto aspect-[4/5] w-full overflow-hidden rounded-[4px] bg-[#ebe7e2] shadow-[0_18px_48px_rgba(37,35,32,0.07)]">
+                  <article data-professional-card className="group relative w-[280px] shrink-0 snap-start overflow-hidden rounded-[16px] bg-[#ebe7e2] shadow-[0_28px_80px_rgba(37,35,32,0.08)] md:w-[360px]">
+                    <div className="relative aspect-[4/5] w-full overflow-hidden">
                       <Image
                         src={professional.image}
                         alt={`${professional.name} - ${professional.role}`}
                         fill
-                        className="object-cover object-center grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0"
-                        sizes="(max-width: 767px) 156px, 168px"
+                        className="object-cover object-center grayscale transition duration-700 group-hover:scale-105"
+                        sizes="(max-width: 767px) 280px, 360px"
                       />
                     </div>
-                    <h3 className="mt-3 font-serif text-base font-light text-[#181715] md:text-lg">{professional.name}</h3>
-                    <p className="mx-auto mt-2 max-w-[170px] text-[8px] font-bold uppercase leading-4 tracking-[0.22em] text-[#6b6660]">{professional.role}</p>
+                    <div className="absolute bottom-5 left-5 right-5 rounded-[12px] bg-white/95 px-6 py-5 shadow-[0_18px_45px_rgba(37,35,32,0.08)] backdrop-blur-md">
+                      <h3 className="font-serif text-2xl font-light leading-none text-[#181715] md:text-3xl">{professional.name}</h3>
+                      <p className="mt-4 text-[9px] font-bold uppercase leading-4 tracking-[0.32em] text-[#4f4742]">{professional.role}</p>
+                    </div>
                   </article>
                 </FadeIn>
               ))}
