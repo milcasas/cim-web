@@ -472,15 +472,16 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl">
           <FadeIn>
             <div className="max-w-6xl">
-              <p className="inline-flex items-center gap-3 text-sm font-medium text-[#7b4a39] md:text-base">
-                <span className="size-2.5 rounded-full bg-[#7b4a39]" />
-                Nuestro equipo
+              <p className="inline-flex rounded-full bg-[#7b4a39] px-9 py-3 text-[10px] font-medium uppercase tracking-normal text-white">
+                familia cim
               </p>
               <h2 className="mt-12 max-w-6xl font-serif text-[clamp(3.4rem,8vw,7.4rem)] font-light leading-[0.92] text-[#181715]">
                 Conozca al equipo de CIM
               </h2>
-              <p className="mt-8 max-w-4xl text-xl leading-8 text-[#5d514b] md:text-3xl md:leading-10">
-                Arquitectos, ingenieros y asesores que transforman ideas en espacios únicos.
+              <p className="mt-8 max-w-3xl text-xl leading-8 text-[#5d514b] md:text-3xl md:leading-10">
+                Diseñamos el lugar donde
+                <br />
+                comienza tu historia.
               </p>
             </div>
           </FadeIn>
