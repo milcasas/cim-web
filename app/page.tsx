@@ -111,6 +111,16 @@ const professionals = [
   },
 ]
 
+const visualSlides = [
+  {
+    title: "Construimos tus sueños.",
+    eyebrow: "Equipo en obra",
+    description:
+      "La visualización se confirma en campo: planos, decisiones y seguimiento trabajan juntos para que cada avance conserve la intención del proyecto.",
+    image: "/professionals/construimos-tus-suenos.jpg",
+  },
+]
+
 function FadeIn({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
     <motion.div
@@ -129,6 +139,7 @@ export default function HomePage() {
   const [openFaq, setOpenFaq] = useState(0)
   const heroRef = useRef<HTMLElement>(null)
   const galleryTrackRef = useRef<HTMLDivElement>(null)
+  const visualTrackRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
   const heroTextOpacity = useTransform(scrollY, [0, 420], [1, 0])
   const heroTextY = useTransform(scrollY, [0, 420], [0, 88])
@@ -143,6 +154,16 @@ export default function HomePage() {
 
     track.scrollBy({
       left: direction === "next" ? cardStep * 2 : -cardStep * 2,
+      behavior: "smooth",
+    })
+  }
+
+  const scrollVisual = (direction: "prev" | "next") => {
+    const track = visualTrackRef.current
+    if (!track) return
+
+    track.scrollBy({
+      left: direction === "next" ? track.clientWidth * 0.9 : -track.clientWidth * 0.9,
       behavior: "smooth",
     })
   }
@@ -407,31 +428,6 @@ export default function HomePage() {
             ))}
           </div>
 
-          <FadeIn delay={0.18}>
-            <div className="mx-auto mt-10 max-w-5xl overflow-hidden rounded-[6px] bg-[#181715] shadow-[0_30px_90px_rgba(37,35,32,0.16)] md:mt-14">
-              <div className="relative min-h-[260px] md:aspect-[21/8]">
-                <Image
-                  src="/professionals/construimos-tus-suenos.jpg"
-                  alt="Equipo CIM en obra"
-                  fill
-                  className="object-cover object-center"
-                  sizes="(max-width: 1024px) 100vw, 1024px"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-black/10" />
-                <div className="absolute inset-0 flex items-end p-6 md:items-center md:p-10">
-                  <div className="max-w-xl text-white">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.32em] text-white/70">Equipo CIM</p>
-                    <h3 className="mt-3 font-serif text-[clamp(2.2rem,5vw,5rem)] font-light leading-[0.95]">
-                      Construimos tus sueños.
-                    </h3>
-                    <p className="mt-4 max-w-md text-sm leading-6 text-white/80 md:text-base">
-                      Arquitectura, obra y seguimiento reunidos para convertir cada idea en un proyecto claro, funcional y bien ejecutado.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </FadeIn>
         </div>
       </section>
 
@@ -515,6 +511,55 @@ export default function HomePage() {
             </div>
           </FadeIn>
         </div>
+
+        <FadeIn delay={0.18}>
+          <div className="relative mx-auto mt-14 max-w-6xl md:mt-16">
+            <button
+              className="absolute left-3 top-1/2 z-20 grid size-10 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-black/20 text-white/55 opacity-60 backdrop-blur-md transition duration-300 hover:bg-black/55 hover:text-white hover:opacity-100 md:size-12"
+              aria-label="Ver imagen anterior"
+              onClick={() => scrollVisual("prev")}
+            >
+              <ChevronLeft size={24} strokeWidth={1.7} />
+            </button>
+            <button
+              className="absolute right-3 top-1/2 z-20 grid size-10 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-black/20 text-white/55 opacity-60 backdrop-blur-md transition duration-300 hover:bg-black/55 hover:text-white hover:opacity-100 md:size-12"
+              aria-label="Ver imagen siguiente"
+              onClick={() => scrollVisual("next")}
+            >
+              <ChevronRight size={24} strokeWidth={1.7} />
+            </button>
+
+            <div
+              ref={visualTrackRef}
+              className="project-scroll flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain scroll-smooth rounded-[10px]"
+            >
+              {visualSlides.map((slide) => (
+                <article
+                  key={slide.title}
+                  className="relative min-h-[330px] w-full shrink-0 snap-center overflow-hidden rounded-[10px] border border-white/12 bg-black/30 shadow-[0_30px_90px_rgba(0,0,0,0.34)] md:aspect-[21/8] md:min-h-0"
+                >
+                  <Image
+                    src={slide.image}
+                    alt={slide.title}
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width: 1180px) 100vw, 1180px"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/78 via-black/34 to-black/10" />
+                  <div className="absolute inset-0 flex items-end p-6 md:items-center md:p-12">
+                    <div className="max-w-xl">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.32em] text-white/70">{slide.eyebrow}</p>
+                      <h3 className="mt-3 font-serif text-[clamp(2.2rem,5vw,5.2rem)] font-light leading-[0.94] text-white">
+                        {slide.title}
+                      </h3>
+                      <p className="mt-4 max-w-md text-sm leading-6 text-white/80 md:text-base">{slide.description}</p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </FadeIn>
       </section>
 
       <section id="faq" className="px-4 py-20 md:py-28">
