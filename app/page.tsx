@@ -757,42 +757,42 @@ export default function HomePage() {
         </div>
       </section>
 
-      <footer className="px-4 pb-0 pt-16 md:pt-28">
+      <footer className="px-4 pb-0 pt-14 md:pt-20">
         <div className="mx-auto max-w-[1680px] border-t border-[#d8d3cc]">
-          <div className="grid items-center gap-6 py-7 text-[#6b6660] md:py-8 lg:grid-cols-[1.15fr_1fr_1.25fr_auto] lg:gap-0">
-            <div className="flex items-center gap-5 lg:pr-9">
+          <div className="grid items-center gap-5 py-5 text-[13px] font-semibold text-[#6b6660] md:text-sm lg:grid-cols-[1.15fr_0.92fr_1.15fr_auto] lg:gap-0">
+            <div className="flex items-center gap-4 lg:pr-8">
               <Image
                 src="/logos/cim-mark-dark.png"
                 alt="Constructora CIM"
-                width={36}
-                height={44}
-                className="h-11 w-auto opacity-75"
+                width={30}
+                height={36}
+                className="h-9 w-auto opacity-70"
               />
-              <p className="text-sm font-semibold leading-5 md:text-base">
+              <p className="leading-5">
                 Constructora CIM - Arquitectura, diseño y construcción
               </p>
             </div>
 
-            <div className="border-[#d8d3cc] lg:border-l lg:px-9">
-              <p className="max-w-sm text-sm font-semibold leading-5 md:text-[15px]">
+            <div className="border-[#d8d3cc] lg:border-l lg:px-8">
+              <p className="max-w-sm leading-5">
                 Avalado por SUNAT, el Ministerio de Vivienda, el Colegio de Arquitectos y CAPECO
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-4 border-[#d8d3cc] lg:border-l lg:px-9">
+            <div className="flex flex-wrap items-center gap-3 border-[#d8d3cc] lg:border-l lg:px-8">
               {[
-                { src: "/logos/institucional/sunat.png", alt: "SUNAT", width: 104 },
-                { src: "/logos/institucional/ministerio-vivienda.png", alt: "Ministerio de Vivienda", width: 104 },
-                { src: "/logos/institucional/colegio-arquitectos.png", alt: "Colegio de Arquitectos del Perú", width: 116 },
-                { src: "/logos/institucional/capeco.png", alt: "CAPECO", width: 92 },
+                { src: "/logos/institucional/sunat.png", alt: "SUNAT", width: 82 },
+                { src: "/logos/institucional/ministerio-vivienda.png", alt: "Ministerio de Vivienda", width: 84 },
+                { src: "/logos/institucional/colegio-arquitectos.png", alt: "Colegio de Arquitectos del Perú", width: 92 },
+                { src: "/logos/institucional/capeco.png", alt: "CAPECO", width: 72 },
               ].map((logo) => (
-                <span key={logo.alt} className="relative flex h-11 items-center justify-center">
+                <span key={logo.alt} className="relative flex h-8 items-center justify-center">
                   <Image
                     src={logo.src}
                     alt={logo.alt}
                     width={logo.width}
-                    height={44}
-                    className="max-h-9 w-auto object-contain opacity-60 grayscale"
+                    height={32}
+                    className="max-h-7 w-auto object-contain opacity-62 grayscale"
                   />
                 </span>
               ))}
@@ -809,9 +809,9 @@ export default function HomePage() {
               ))}
             </div>
 
-            <div className="flex flex-wrap items-center gap-5 border-[#d8d3cc] text-sm font-semibold lg:border-l lg:pl-9">
+            <div className="flex flex-wrap items-center gap-4 border-[#d8d3cc] text-[13px] font-semibold lg:border-l lg:pl-8">
               <span className="inline-flex items-center gap-2">
-                <ShieldCheck size={16} strokeWidth={1.7} /> Perú
+                <ShieldCheck size={14} strokeWidth={1.7} /> Perú
               </span>
               <a
                 href={whatsappHref}
@@ -819,12 +819,12 @@ export default function HomePage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 transition hover:text-[#7b4a39]"
               >
-                <MessageCircle size={16} strokeWidth={1.7} /> WhatsApp +51 960 240 708
+                <MessageCircle size={14} strokeWidth={1.7} /> WhatsApp +51 960 240 708
               </a>
             </div>
           </div>
         </div>
-        <div className="h-2 bg-[#1f1f1d]" />
+        <div className="h-1.5 bg-[#1f1f1d]" />
         <div className="hidden">
           <div className="flex items-center gap-3">
             <Image src="/logos/cim-mark-dark.png" alt="Constructora CIM" width={28} height={28} className="h-7 w-auto opacity-80" />
