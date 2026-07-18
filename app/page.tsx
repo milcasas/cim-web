@@ -772,7 +772,26 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-3 border-[#d8d3cc] lg:border-l lg:px-9">
+            <div className="flex flex-wrap items-center gap-4 border-[#d8d3cc] lg:border-l lg:px-9">
+              {[
+                { src: "/logos/institucional/sunat.png", alt: "SUNAT", width: 104 },
+                { src: "/logos/institucional/ministerio-vivienda.png", alt: "Ministerio de Vivienda", width: 104 },
+                { src: "/logos/institucional/colegio-arquitectos.png", alt: "Colegio de Arquitectos del Perú", width: 116 },
+                { src: "/logos/institucional/capeco.png", alt: "CAPECO", width: 92 },
+              ].map((logo) => (
+                <span key={logo.alt} className="relative flex h-11 items-center justify-center">
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    width={logo.width}
+                    height={44}
+                    className="max-h-9 w-auto object-contain opacity-60 grayscale"
+                  />
+                </span>
+              ))}
+            </div>
+
+            <div className="hidden">
               {["SUNAT", "MIN. VIVIENDA", "ARQUITECTOS DEL PERÚ", "CAPECO"].map((label) => (
                 <span
                   key={label}
