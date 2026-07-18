@@ -365,28 +365,28 @@ export default function HomePage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 0.95, ease: [0.21, 0.47, 0.32, 0.98] }}
         >
-          <div className="grid max-w-[980px] grid-cols-3 overflow-hidden rounded-[8px] border border-white/18 bg-black/54 text-left text-white shadow-[0_24px_80px_rgba(0,0,0,0.38)] backdrop-blur-xl">
-            <div className="flex items-center gap-4 px-8 py-5">
-              <ClipboardList className="shrink-0 text-white" size={34} strokeWidth={1.45} />
+          <div className="grid max-w-[820px] grid-cols-3 overflow-hidden rounded-[7px] border border-white/16 bg-black/50 text-left text-white shadow-[0_18px_60px_rgba(0,0,0,0.32)] backdrop-blur-xl">
+            <div className="flex items-center gap-3 px-6 py-3.5">
+              <ClipboardList className="shrink-0 text-white" size={26} strokeWidth={1.45} />
               <div>
-                <p className="text-sm font-bold leading-5">RUC</p>
-                <p className="mt-1 text-base font-semibold leading-5 text-white/92">20608726960</p>
+                <p className="text-xs font-bold leading-4">RUC</p>
+                <p className="mt-0.5 text-sm font-semibold leading-4 text-white/92">20608726960</p>
               </div>
             </div>
-            <div className="flex items-center gap-4 border-x border-white/22 px-8 py-5">
-              <Building2 className="shrink-0 text-white" size={34} strokeWidth={1.45} />
+            <div className="flex items-center gap-3 border-x border-white/18 px-6 py-3.5">
+              <Building2 className="shrink-0 text-white" size={26} strokeWidth={1.45} />
               <div>
-                <p className="text-sm font-bold leading-5">Razón Social</p>
-                <p className="mt-1 max-w-[360px] text-sm font-semibold uppercase leading-5 text-white/92">
+                <p className="text-xs font-bold leading-4">Razón Social</p>
+                <p className="mt-0.5 max-w-[300px] text-xs font-semibold uppercase leading-4 text-white/92">
                   Construcciones Integrales Modernas EIRL
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-4 px-8 py-5">
-              <MapPin className="shrink-0 text-white" size={34} strokeWidth={1.45} />
+            <div className="flex items-center gap-3 px-6 py-3.5">
+              <MapPin className="shrink-0 text-white" size={26} strokeWidth={1.45} />
               <div>
-                <p className="text-sm font-bold leading-5">Dirección</p>
-                <p className="mt-1 text-base font-semibold leading-5 text-white/92">Urb. El Trapecio K1</p>
+                <p className="text-xs font-bold leading-4">Dirección</p>
+                <p className="mt-0.5 text-sm font-semibold leading-4 text-white/92">Urb. El Trapecio K1</p>
               </div>
             </div>
           </div>
