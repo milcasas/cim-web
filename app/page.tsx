@@ -17,7 +17,6 @@ import {
   MapPin,
   Menu,
   MessageCircle,
-  Music2,
   ShieldCheck,
 } from "lucide-react"
 import { projects } from "@/lib/projects"
@@ -71,6 +70,14 @@ const faqs = [
 const whatsappHref =
   "https://wa.me/51960240708?text=Hola%20Constructora%20CIM%2C%20quiero%20cotizar%20mi%20proyecto"
 
+function TikTokIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" {...props}>
+      <path d="M16.5 3c.35 2.32 1.65 3.8 4.04 4.05v3.18a7.37 7.37 0 0 1-4.04-1.18v6.56c0 3.25-2.24 5.39-5.45 5.39-3.02 0-5.59-2.13-5.59-5.17 0-3.18 2.47-5.25 5.74-5.25.35 0 .68.03 1 .09v3.34a3.4 3.4 0 0 0-1.03-.16c-1.42 0-2.29.78-2.29 1.92 0 1.09.86 1.88 2.03 1.88 1.33 0 2.15-.75 2.15-2.35V3h3.44Z" />
+    </svg>
+  )
+}
+
 const socialLinks = [
   {
     label: "Instagram",
@@ -85,7 +92,7 @@ const socialLinks = [
   {
     label: "TikTok",
     href: "https://www.tiktok.com/@cim.arquitectura",
-    icon: Music2,
+    icon: TikTokIcon,
   },
 ]
 
@@ -710,15 +717,15 @@ export default function HomePage() {
                 <p className="mt-6 max-w-sm text-sm leading-6 text-[#6b6660]">
                   Envía tu idea, terreno o referencia. Te ayudamos a convertirla en un proyecto claro para construir o vender.
                 </p>
-                <div className="mt-8 flex flex-wrap items-center gap-4">
+                <div className="mt-8 flex flex-wrap items-center gap-6 md:gap-9">
                   <a
                     href={whatsappHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-grid size-20 place-items-center rounded-full bg-[#7b4a39] text-white transition hover:-translate-y-1 hover:bg-[#252320]"
+                    className="inline-grid size-20 place-items-center rounded-full bg-[#7b4a39] text-white shadow-[0_18px_45px_rgba(123,74,57,0.22)] transition hover:-translate-y-1 hover:bg-[#252320] md:size-28 lg:size-36"
                     aria-label="Contactar por WhatsApp"
                   >
-                    <MessageCircle size={28} />
+                    <MessageCircle className="size-8 md:size-12 lg:size-16" strokeWidth={1.8} />
                   </a>
                   {socialLinks.map(({ label, href, icon: Icon }) => (
                     <a
@@ -726,10 +733,10 @@ export default function HomePage() {
                       href={href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-grid size-16 place-items-center rounded-full border border-[#d8d3cc] bg-[#f4f3f1] text-[#252320] transition hover:-translate-y-1 hover:border-[#7b4a39] hover:bg-[#7b4a39] hover:text-white md:size-20"
+                      className="inline-grid size-20 place-items-center rounded-full border border-[#ebe7e2] bg-[#f4f3f1] text-[#3f3d3a] shadow-[0_18px_50px_rgba(30,28,25,0.05)] transition hover:-translate-y-1 hover:border-[#d8d3cc] hover:bg-white hover:text-[#7b4a39] md:size-28 lg:size-36"
                       aria-label={`Abrir ${label} de Constructora CIM`}
                     >
-                      <Icon size={26} strokeWidth={1.8} />
+                      <Icon className="size-8 md:size-12 lg:size-16" strokeWidth={1.9} />
                     </a>
                   ))}
                 </div>
