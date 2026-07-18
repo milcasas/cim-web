@@ -750,8 +750,56 @@ export default function HomePage() {
         </div>
       </section>
 
-      <footer className="px-4 py-8">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 border-t border-[#d8d3cc] pt-6 text-xs text-[#6b6660] md:flex-row">
+      <footer className="px-4 pb-0 pt-16 md:pt-28">
+        <div className="mx-auto max-w-[1680px] border-t border-[#d8d3cc]">
+          <div className="grid items-center gap-6 py-7 text-[#6b6660] md:py-8 lg:grid-cols-[1.15fr_1fr_1.25fr_auto] lg:gap-0">
+            <div className="flex items-center gap-5 lg:pr-9">
+              <Image
+                src="/logos/cim-mark-dark.png"
+                alt="Constructora CIM"
+                width={36}
+                height={44}
+                className="h-11 w-auto opacity-75"
+              />
+              <p className="text-sm font-semibold leading-5 md:text-base">
+                Constructora CIM - Arquitectura, diseño y construcción
+              </p>
+            </div>
+
+            <div className="border-[#d8d3cc] lg:border-l lg:px-9">
+              <p className="max-w-sm text-sm font-semibold leading-5 md:text-[15px]">
+                Avalado por SUNAT, el Ministerio de Vivienda, el Colegio de Arquitectos y CAPECO
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3 border-[#d8d3cc] lg:border-l lg:px-9">
+              {["SUNAT", "MIN. VIVIENDA", "ARQUITECTOS DEL PERÚ", "CAPECO"].map((label) => (
+                <span
+                  key={label}
+                  className="inline-flex min-h-10 items-center rounded-[4px] border border-[#d8d3cc] bg-[#f4f3f1] px-3 text-[11px] font-black uppercase leading-none tracking-[0.04em] text-[#77716a]"
+                >
+                  {label}
+                </span>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap items-center gap-5 border-[#d8d3cc] text-sm font-semibold lg:border-l lg:pl-9">
+              <span className="inline-flex items-center gap-2">
+                <ShieldCheck size={16} strokeWidth={1.7} /> Perú
+              </span>
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 transition hover:text-[#7b4a39]"
+              >
+                <MessageCircle size={16} strokeWidth={1.7} /> WhatsApp +51 960 240 708
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="h-2 bg-[#1f1f1d]" />
+        <div className="hidden">
           <div className="flex items-center gap-3">
             <Image src="/logos/cim-mark-dark.png" alt="Constructora CIM" width={28} height={28} className="h-7 w-auto opacity-80" />
             <p>Constructora CIM - Arquitectura, diseño y construcción</p>
