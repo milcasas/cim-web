@@ -10,10 +10,11 @@ import {
   ChevronDown,
   ChevronLeft,
   ChevronRight,
-  Box,
+  Building2,
+  ClipboardList,
   Facebook,
-  ImageIcon,
   Instagram,
+  MapPin,
   Menu,
   MessageCircle,
   Music2,
@@ -259,7 +260,7 @@ export default function HomePage() {
       </a>
 
       <header className="absolute left-0 right-0 top-0 z-50">
-        <nav className="relative grid h-16 w-full grid-cols-[1fr_auto_1fr] items-center border-b border-white/14 bg-black/28 px-5 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur-xl md:h-20 md:px-12">
+        <nav className="relative grid h-16 w-full grid-cols-[1fr_auto_1fr] items-center border-b border-white/16 bg-black/58 px-5 shadow-[0_18px_70px_rgba(0,0,0,0.28)] backdrop-blur-xl md:h-[90px] md:px-20">
           <div className="hidden items-center gap-9 text-sm font-semibold text-white/84 md:flex">
             <a className="transition hover:text-white" href="#proyectos">
               Proyectos
@@ -314,7 +315,7 @@ export default function HomePage() {
           className="relative z-10 flex h-full items-center justify-center px-5 pb-28 pt-32 text-center text-white"
           style={{ opacity: heroTextOpacity, y: heroTextY }}
         >
-          <div className="mx-auto max-w-[1080px] -translate-y-5 md:-translate-y-8">
+          <div className="mx-auto max-w-[1080px] -translate-y-8 md:-translate-y-12">
             <motion.h1
               className="mx-auto tracking-normal"
               initial={{ opacity: 0, y: 34 }}
@@ -364,16 +365,30 @@ export default function HomePage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 0.95, ease: [0.21, 0.47, 0.32, 0.98] }}
         >
-          <div className="flex max-w-[760px] flex-wrap items-center justify-center gap-5 rounded-full border border-white/16 bg-black/44 px-6 py-4 text-sm font-semibold text-white shadow-[0_24px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl md:gap-10 md:px-9">
-            <span className="inline-flex items-center gap-2">
-              <Box className="text-emerald-400" size={21} strokeWidth={1.7} /> Proyecto a medida
-            </span>
-            <span className="inline-flex items-center gap-2">
-              <ImageIcon className="text-cyan-300" size={21} strokeWidth={1.7} /> Renders hiperrealistas
-            </span>
-            <span className="inline-flex items-center gap-2">
-              <ShieldCheck className="text-sky-300" size={21} strokeWidth={1.7} /> Asesoría técnica
-            </span>
+          <div className="grid max-w-[980px] grid-cols-3 overflow-hidden rounded-[8px] border border-white/18 bg-black/54 text-left text-white shadow-[0_24px_80px_rgba(0,0,0,0.38)] backdrop-blur-xl">
+            <div className="flex items-center gap-4 px-8 py-5">
+              <ClipboardList className="shrink-0 text-white" size={34} strokeWidth={1.45} />
+              <div>
+                <p className="text-sm font-bold leading-5">RUC</p>
+                <p className="mt-1 text-base font-semibold leading-5 text-white/92">20608726960</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 border-x border-white/22 px-8 py-5">
+              <Building2 className="shrink-0 text-white" size={34} strokeWidth={1.45} />
+              <div>
+                <p className="text-sm font-bold leading-5">Razón Social</p>
+                <p className="mt-1 max-w-[360px] text-sm font-semibold uppercase leading-5 text-white/92">
+                  Construcciones Integrales Modernas EIRL
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 px-8 py-5">
+              <MapPin className="shrink-0 text-white" size={34} strokeWidth={1.45} />
+              <div>
+                <p className="text-sm font-bold leading-5">Dirección</p>
+                <p className="mt-1 text-base font-semibold leading-5 text-white/92">Urb. El Trapecio K1</p>
+              </div>
+            </div>
           </div>
         </motion.div>
       </section>
