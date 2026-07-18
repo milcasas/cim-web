@@ -710,22 +710,22 @@ export default function HomePage() {
 
       <section id="contacto" className="px-4 pb-6">
         <div className="mx-auto overflow-hidden rounded-[8px] bg-white">
-          <div className="relative mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-[0.8fr_1.2fr] md:px-8 md:py-16">
+          <div className="relative mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-2 md:px-8 md:py-16">
             <div className="relative z-10">
               <FadeIn>
                 <h2 className="text-6xl font-black uppercase leading-none text-[#191817] md:text-8xl lg:text-9xl">Get in touch</h2>
                 <p className="mt-6 max-w-sm text-sm leading-6 text-[#6b6660]">
                   Envía tu idea, terreno o referencia. Te ayudamos a convertirla en un proyecto claro para construir o vender.
                 </p>
-                <div className="mt-8 flex flex-wrap items-center gap-6 md:gap-9">
+                <div className="mt-8 flex flex-nowrap items-center gap-5 overflow-x-auto pb-3 md:gap-6">
                   <a
                     href={whatsappHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-grid size-20 place-items-center rounded-full bg-[#7b4a39] text-white shadow-[0_18px_45px_rgba(123,74,57,0.22)] transition hover:-translate-y-1 hover:bg-[#252320] md:size-28 lg:size-36"
+                    className="inline-grid size-20 shrink-0 place-items-center rounded-full bg-[#7b4a39] text-white shadow-[0_18px_45px_rgba(123,74,57,0.22)] transition hover:-translate-y-1 hover:bg-[#252320] md:size-24 lg:size-28"
                     aria-label="Contactar por WhatsApp"
                   >
-                    <MessageCircle className="size-8 md:size-12 lg:size-16" strokeWidth={1.8} />
+                    <MessageCircle className="size-8 md:size-10 lg:size-12" strokeWidth={1.8} />
                   </a>
                   {socialLinks.map(({ label, href, icon: Icon }) => (
                     <a
@@ -733,10 +733,10 @@ export default function HomePage() {
                       href={href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-grid size-20 place-items-center rounded-full border border-[#ebe7e2] bg-[#f4f3f1] text-[#3f3d3a] shadow-[0_18px_50px_rgba(30,28,25,0.05)] transition hover:-translate-y-1 hover:border-[#d8d3cc] hover:bg-white hover:text-[#7b4a39] md:size-28 lg:size-36"
+                      className="inline-grid size-20 shrink-0 place-items-center rounded-full border border-[#ebe7e2] bg-[#f4f3f1] text-[#3f3d3a] shadow-[0_18px_50px_rgba(30,28,25,0.05)] transition hover:-translate-y-1 hover:border-[#d8d3cc] hover:bg-white hover:text-[#7b4a39] md:size-24 lg:size-28"
                       aria-label={`Abrir ${label} de Constructora CIM`}
                     >
-                      <Icon className="size-8 md:size-12 lg:size-16" strokeWidth={1.9} />
+                      <Icon className="size-8 md:size-10 lg:size-12" strokeWidth={1.9} />
                     </a>
                   ))}
                 </div>
