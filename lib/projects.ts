@@ -212,6 +212,66 @@ export const projects: Project[] = [
     ],
     deliverables: ["Fachada 3D", "Vistas exteriores", "Ingreso", "Balcones", "Presentación visual"],
   },
+  {
+    slug: "casa-campo-herrera",
+    title: "Casa de Campo Herrera",
+    subtitle: "Casa de campo familiar",
+    category: "Residencial campestre",
+    location: "Perú",
+    year: "2026",
+    cover: "/cim-projects/casa-campo-herrera/01.png",
+    stat: "10",
+    summary:
+      "Casa de campo con lenguaje cálido, terrazas, espacios sociales exteriores y ambientes interiores pensados para una vida familiar conectada con el paisaje.",
+    gallery: [
+      "/cim-projects/casa-campo-herrera/01.png",
+      "/cim-projects/casa-campo-herrera/02.png",
+      "/cim-projects/casa-campo-herrera/03.png",
+      "/cim-projects/casa-campo-herrera/04.png",
+      "/cim-projects/casa-campo-herrera/05.png",
+      "/cim-projects/casa-campo-herrera/06.png",
+      "/cim-projects/casa-campo-herrera/07.png",
+      "/cim-projects/casa-campo-herrera/08.png",
+    ],
+    deliverables: ["Fachada 3D", "Sala principal", "Cocina", "Parrillas", "Jacuzzi", "Paisajismo"],
+  },
+  {
+    slug: "casa-ortega",
+    title: "Casa Ortega",
+    subtitle: "Residencia urbana vertical",
+    category: "Fachada residencial",
+    location: "Perú",
+    year: "2026",
+    cover: "/cim-projects/casa-ortega/01.png",
+    stat: "11",
+    summary:
+      "Residencia urbana de varios niveles con fachada vertical, iluminación integrada y una composición contemporánea para destacar en un entorno residencial.",
+    gallery: [
+      "/cim-projects/casa-ortega/01.png",
+      "/cim-projects/casa-ortega/02.png",
+      "/cim-projects/casa-ortega/03.png",
+    ],
+    deliverables: ["Fachada 3D", "Vistas exteriores", "Iluminación", "Materialidad", "Presentación visual"],
+  },
+  {
+    slug: "proyecto-de-la-cruz",
+    title: "Proyecto De la Cruz",
+    subtitle: "Edificio residencial",
+    category: "Residencial vertical",
+    location: "Perú",
+    year: "2026",
+    cover: "/cim-projects/proyecto-de-la-cruz/01.png",
+    stat: "12",
+    summary:
+      "Edificio residencial de fachada vertical con balcones, contraste de madera, concreto y vidrio para comunicar presencia urbana y orden arquitectónico.",
+    gallery: [
+      "/cim-projects/proyecto-de-la-cruz/01.png",
+      "/cim-projects/proyecto-de-la-cruz/02.png",
+      "/cim-projects/proyecto-de-la-cruz/03.png",
+      "/cim-projects/proyecto-de-la-cruz/04.png",
+    ],
+    deliverables: ["Fachada 3D", "Balcones", "Materialidad", "Volumetría", "Presentación visual"],
+  },
 ]
 
 export function getProject(slug: string) {
