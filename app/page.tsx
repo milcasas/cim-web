@@ -147,19 +147,19 @@ const professionals = [
   },
   {
     name: "Jesús Jara",
-    role: "Asesor comercial",
+    role: "Ejecutivo comercial",
     image: "/professionals/05.jpg",
     description: "Escucha al cliente, ordena sus necesidades y facilita el primer paso del proyecto.",
   },
   {
     name: "Gustavo Mora",
-    role: "Asesor comercial",
+    role: "Ejecutivo comercial",
     image: "/professionals/06.jpg",
     description: "Traduce objetivos, presupuesto y alcance en una ruta clara para iniciar con seguridad.",
   },
   {
     name: "Rodrigo Flores",
-    role: "Asesor comercial",
+    role: "Ejecutivo comercial",
     image: "/professionals/07.jpg",
     description: "Orienta la cotizacion y el seguimiento para que cada cliente entienda el proceso.",
   },
