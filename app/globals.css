@@ -490,3 +490,34 @@
     border: 2px solid rgba(0, 0, 0, 0.8);
   }
 }
+
+.professional-flip {
+  perspective: 1100px;
+}
+
+.professional-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.72s cubic-bezier(0.21, 0.47, 0.32, 0.98);
+}
+
+.group:hover .professional-flip-inner,
+.group:focus-within .professional-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.professional-flip-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.professional-flip-back {
+  transform: rotateY(180deg);
+}

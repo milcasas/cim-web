@@ -101,56 +101,67 @@ const professionals = [
     name: "Alejandro Mejía",
     role: "Fundador",
     image: "/professionals/01.jpg",
+    description: "Dirige la vision integral del estudio, conectando estrategia, obra y experiencia del cliente.",
   },
   {
     name: "Christian Cruz",
     role: "Arquitecto",
     image: "/professionals/02.jpg",
+    description: "Desarrolla propuestas residenciales con foco en distribucion, fachada y claridad constructiva.",
   },
   {
     name: "Jaruth Salas",
     role: "Arquitecta",
     image: "/professionals/03.jpg",
+    description: "Convierte ideas iniciales en espacios coherentes, funcionales y listos para visualizar.",
   },
   {
     name: "Michelle",
     role: "Arquitecta",
     image: "/professionals/04.jpg",
+    description: "Aporta sensibilidad espacial y orden visual para que cada ambiente tenga una intencion clara.",
   },
   {
     name: "Almendra Loyola",
     role: "Arquitecta",
     image: "/professionals/09.jpg",
+    description: "Trabaja la materialidad, el detalle y la composicion para elevar la lectura del proyecto.",
   },
   {
     name: "Carolina Katto",
     role: "Arquitecta",
     image: "/professionals/10.jpg",
+    description: "Integra criterios de diseño y presentacion para comunicar mejor cada decision arquitectonica.",
   },
   {
     name: "Gonzalo Cabrera",
     role: "Ing. civil / estructuras",
     image: "/professionals/08.jpg",
+    description: "Evalua la estructura y la viabilidad tecnica para que el diseño avance con respaldo.",
   },
   {
     name: "Jorge Montañez",
     role: "Ing. civil",
     image: "/professionals/11.jpg",
+    description: "Acompaña la coordinacion tecnica y constructiva para mantener precision en cada etapa.",
   },
   {
     name: "Jesús Jara",
     role: "Asesor comercial",
     image: "/professionals/05.jpg",
+    description: "Escucha al cliente, ordena sus necesidades y facilita el primer paso del proyecto.",
   },
   {
     name: "Gustavo Mora",
     role: "Asesor comercial",
     image: "/professionals/06.jpg",
+    description: "Traduce objetivos, presupuesto y alcance en una ruta clara para iniciar con seguridad.",
   },
   {
     name: "Rodrigo Flores",
     role: "Asesor comercial",
     image: "/professionals/07.jpg",
+    description: "Orienta la cotizacion y el seguimiento para que cada cliente entienda el proceso.",
   },
 ]
 
@@ -530,19 +541,27 @@ export default function HomePage() {
             >
               {professionals.map((professional, index) => (
                 <FadeIn key={professional.name} delay={Math.min(index, 6) * 0.05} className="shrink-0 snap-start">
-                  <article data-professional-card className="group relative w-[280px] shrink-0 snap-start overflow-hidden rounded-[16px] bg-[#ebe7e2] shadow-[0_28px_80px_rgba(37,35,32,0.08)] md:w-[360px]">
+                  <article data-professional-card className="group relative w-[310px] shrink-0 snap-start overflow-hidden rounded-[18px] bg-[#ebe7e2] shadow-[0_30px_90px_rgba(37,35,32,0.1)] md:w-[420px]">
                     <div className="relative aspect-[4/5] w-full overflow-hidden">
                       <Image
                         src={professional.image}
                         alt={`${professional.name} - ${professional.role}`}
                         fill
                         className="object-cover object-center grayscale transition duration-700 group-hover:scale-105"
-                        sizes="(max-width: 767px) 280px, 360px"
+                        sizes="(max-width: 767px) 310px, 420px"
                       />
                     </div>
-                    <div className="absolute bottom-5 left-5 right-5 rounded-[12px] bg-white/95 px-6 py-5 shadow-[0_18px_45px_rgba(37,35,32,0.08)] backdrop-blur-md">
-                      <h3 className="font-serif text-2xl font-light leading-none text-[#181715] md:text-3xl">{professional.name}</h3>
-                      <p className="mt-4 text-[9px] font-bold uppercase leading-4 tracking-[0.32em] text-[#4f4742]">{professional.role}</p>
+                    <div className="professional-flip absolute bottom-5 left-5 right-5 h-[122px] md:bottom-6 md:left-6 md:right-6 md:h-[142px]">
+                      <div className="professional-flip-inner">
+                        <div className="professional-flip-face rounded-[14px] bg-white/95 px-6 py-5 shadow-[0_18px_45px_rgba(37,35,32,0.08)] backdrop-blur-md md:px-7 md:py-6">
+                          <h3 className="font-serif text-2xl font-light leading-none text-[#181715] md:text-[2.15rem]">{professional.name}</h3>
+                          <p className="mt-4 text-[9px] font-bold uppercase leading-4 tracking-[0.32em] text-[#4f4742]">{professional.role}</p>
+                        </div>
+                        <div className="professional-flip-face professional-flip-back rounded-[14px] bg-[#7b4a39] px-6 py-5 text-white shadow-[0_18px_45px_rgba(37,35,32,0.14)] md:px-7 md:py-6">
+                          <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-white/65">{professional.role}</p>
+                          <p className="mt-3 text-sm font-medium leading-5 text-white/95 md:text-[15px] md:leading-6">{professional.description}</p>
+                        </div>
+                      </div>
                     </div>
                   </article>
                 </FadeIn>
