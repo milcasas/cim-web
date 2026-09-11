@@ -157,12 +157,6 @@ const professionals = [
     image: "/professionals/06.jpg",
     description: "Traduce objetivos, presupuesto y alcance en una ruta clara para iniciar con seguridad.",
   },
-  {
-    name: "Rodrigo Flores",
-    role: "Ejecutivo comercial",
-    image: "/professionals/07.jpg",
-    description: "Orienta la cotizacion y el seguimiento para que cada cliente entienda el proceso.",
-  },
 ]
 
 const visualSlides = [
