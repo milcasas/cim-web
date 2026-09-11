@@ -152,6 +152,12 @@ const professionals = [
     description: "Acompaña la coordinacion tecnica y constructiva para mantener precision en cada etapa.",
   },
   {
+    name: "Fabian Avalos",
+    role: "Analista de datos",
+    image: "/professionals/fabian-avalos.png",
+    description: "Organiza y analiza datos para apoyar la gestión y la toma de decisiones del equipo.",
+  },
+  {
     name: "Jesús Jara",
     role: "Ejecutivo comercial",
     image: "/professionals/05.jpg",
