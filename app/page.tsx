@@ -106,7 +106,7 @@ const professionals = [
   {
     name: "Luis",
     role: "Sub gerente general",
-    image: "/professionals/luis.jpg",
+    image: "/professionals/luis.png",
     description: "Apoya la gestión general y la coordinación del equipo en cada etapa del proyecto.",
   },
   {
@@ -547,9 +547,7 @@ export default function HomePage() {
                         src={professional.image}
                         alt={`${professional.name} - ${professional.role}`}
                         fill
-                        className={professional.image === "/professionals/luis.jpg"
-                          ? "object-cover object-top origin-[50%_15%] scale-[1.65] grayscale transition duration-700 group-hover:scale-[1.73]"
-                          : "object-cover object-center grayscale transition duration-700 group-hover:scale-105"}
+                        className="object-cover object-center grayscale transition duration-700 group-hover:scale-105"
                         sizes="(max-width: 767px) 310px, 420px"
                       />
                     </div>
