@@ -154,7 +154,7 @@ const professionals = [
   {
     name: "Fabian Avalos",
     role: "Analista de datos",
-    image: "/professionals/fabian-avalos.png",
+    image: "/professionals/fabian-avalos-v2.png",
     description: "Organiza y analiza datos para apoyar la gestión y la toma de decisiones del equipo.",
   },
   {
