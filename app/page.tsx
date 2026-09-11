@@ -547,7 +547,9 @@ export default function HomePage() {
                         src={professional.image}
                         alt={`${professional.name} - ${professional.role}`}
                         fill
-                        className="object-cover object-center grayscale transition duration-700 group-hover:scale-105"
+                        className={professional.image === "/professionals/luis.jpg"
+                          ? "object-cover object-top origin-[50%_15%] scale-[1.65] grayscale transition duration-700 group-hover:scale-[1.73]"
+                          : "object-cover object-center grayscale transition duration-700 group-hover:scale-105"}
                         sizes="(max-width: 767px) 310px, 420px"
                       />
                     </div>
