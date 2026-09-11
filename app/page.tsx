@@ -104,7 +104,7 @@ const professionals = [
     description: "Dirige la vision integral del estudio, conectando estrategia, obra y experiencia del cliente.",
   },
   {
-    name: "Luis",
+    name: "Luis Salinas",
     role: "Sub gerente general",
     image: "/professionals/luis.png",
     description: "Apoya la gestión general y la coordinación del equipo en cada etapa del proyecto.",
