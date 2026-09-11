@@ -104,6 +104,12 @@ const professionals = [
     description: "Dirige la vision integral del estudio, conectando estrategia, obra y experiencia del cliente.",
   },
   {
+    name: "Luis",
+    role: "Sub gerente general",
+    image: "/professionals/luis.jpg",
+    description: "Apoya la gestión general y la coordinación del equipo en cada etapa del proyecto.",
+  },
+  {
     name: "Christian Cruz",
     role: "Arquitecto",
     image: "/professionals/02.jpg",
