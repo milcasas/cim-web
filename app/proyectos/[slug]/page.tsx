@@ -1,165 +1,52 @@
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ArrowLeft, MessageCircle } from "lucide-react"
+import { ArrowDown, ArrowUpRight } from "lucide-react"
+import { CimHeader } from "@/components/cim-header"
+import { CimFooter } from "@/components/cim-footer"
 import { ProjectImageGallery } from "@/components/project-image-gallery"
 import { getProject, projects } from "@/lib/projects"
-
-const whatsappHref =
-  "https://wa.me/51960240708?text=Hola%20Constructora%20CIM%2C%20quiero%20cotizar%20un%20proyecto%20similar"
+import { projectImageSizes } from "@/lib/project-image-sizes"
+import { whatsappHref } from "@/lib/site"
 
 export function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }))
+  return projects.map(project => ({ slug: project.slug }))
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  const project = getProject(params.slug)
-
-  if (!project) {
-    return {
-      title: "Proyecto no encontrado | Constructora CIM",
-    }
-  }
-
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const project = getProject(slug)
+  if (!project) return { title: "Proyecto no encontrado | CIM Design Studio" }
   return {
-    title: `${project.title} | Constructora CIM`,
+    title: `${project.title} | CIM Design Studio`,
     description: project.summary,
-    openGraph: {
-      title: `${project.title} | Constructora CIM`,
-      description: project.summary,
-      images: [{ url: project.cover, alt: project.title }],
-    },
+    alternates: { canonical: `/proyectos/${project.slug}` },
+    openGraph: { title: `${project.title} | CIM Design Studio`, description: project.summary, url: `/proyectos/${project.slug}`, images: [{ url: project.cover, alt: project.title }] },
   }
 }
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
-  const project = getProject(params.slug)
-
-  if (!project) {
-    notFound()
-  }
-
-  const projectGallery = project.gallery.slice(0, 8)
-
-  return (
-    <main className="site-shell min-h-screen bg-[#f4f3f1] text-[#252320]">
-      <header className="fixed left-0 right-0 top-0 z-50 px-4 pt-5">
-        <nav className="mx-auto flex h-12 max-w-6xl items-center justify-between">
-          <Link
-            href="/#proyectos"
-            className="inline-flex items-center gap-2 rounded-full border border-white/18 bg-black/38 px-4 py-2 text-xs font-bold text-white backdrop-blur-md transition hover:bg-white hover:text-[#252320]"
-          >
-            <ArrowLeft size={14} />
-            Galería
-          </Link>
-          <Link href="/" className="relative block h-8 w-[134px]" aria-label="Constructora CIM">
-            <Image src="/logos/cim-logo-white.png" alt="Constructora CIM" fill priority className="object-contain" sizes="134px" />
-          </Link>
-          <a
-            href={whatsappHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-[#7b4a39] px-4 py-2 text-xs font-bold text-white transition hover:bg-white hover:text-[#252320]"
-          >
-            <MessageCircle size={14} />
-            Cotizar
-          </a>
-        </nav>
-      </header>
-
-      <section className="relative min-h-screen overflow-hidden px-4 pb-16 pt-28">
-        <Image src={project.cover} alt={project.title} fill priority className="object-cover opacity-58" sizes="100vw" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/42 via-black/54 to-black/36" />
-        <div className="relative mx-auto grid min-h-[calc(100vh-7rem)] max-w-6xl gap-10 md:grid-cols-[1.05fr_0.95fr] md:items-end">
-          <div>
-            <p className="text-xs font-bold uppercase text-white/82">{project.category}</p>
-            <h1 className="mt-5 text-5xl font-light leading-[0.98] md:text-7xl lg:text-8xl">{project.title}</h1>
-            <p className="mt-6 max-w-xl text-lg leading-8 text-white/72">{project.summary}</p>
-          </div>
-
-          <div className="rounded-[8px] border border-white/14 bg-black/42 p-6 text-white backdrop-blur-md">
-            <div className="grid grid-cols-2 gap-5">
-              <div>
-                <p className="text-xs uppercase text-white/45">Tipo</p>
-                <p className="mt-1 font-medium">{project.subtitle}</p>
-              </div>
-              <div>
-                <p className="text-xs uppercase text-white/45">Año</p>
-                <p className="mt-1 font-medium">{project.year}</p>
-              </div>
-              <div>
-                <p className="text-xs uppercase text-white/45">Ubicación</p>
-                <p className="mt-1 font-medium">{project.location}</p>
-              </div>
-              <div>
-                <p className="text-xs uppercase text-white/45">Código</p>
-                <p className="mt-1 font-medium">{project.stat}</p>
-              </div>
-            </div>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {project.deliverables.map((item) => (
-                <span key={item} className="rounded-full border border-white/16 px-3 py-2 text-xs text-white/76">
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
+export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const project = getProject(slug)
+  if (!project) notFound()
+  const coverSize = projectImageSizes[project.cover] ?? [1920,1280]
+  const nextProject = projects[(projects.findIndex(item => item.slug === project.slug) + 1) % projects.length]
+  return <div className="editorial project-page">
+    <a className="skip-link" href="#contenido">Saltar al contenido</a>
+    <CimHeader light />
+    <main id="contenido">
+      <section className="project-intro editorial-section">
+        <nav className="editorial-breadcrumb" aria-label="Ruta del proyecto"><Link href="/#proyectos">PROYECTOS</Link><span aria-hidden="true">/</span><span>{project.title}</span></nav>
+        <div className="project-heading"><div><p className="eyebrow">{project.category}</p><h1>{project.title}</h1></div><div className="project-heading-side"><p>{project.location}<br />{project.year}</p><a href="#galeria" className="text-button">Explorar el proyecto <ArrowDown size={17} strokeWidth={1.2} aria-hidden="true" /></a></div></div>
       </section>
-
-      <section className="px-4 py-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-10 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="text-xs font-bold uppercase text-[#7b4a39]">Renders / interiores / planos</p>
-              <h2 className="mt-3 text-4xl font-light md:text-6xl">Archivo visual del proyecto.</h2>
-            </div>
-            <p className="max-w-sm text-sm leading-6 text-[#6b6660]">
-              Esta página queda preparada para sumar planos, cortes, elevaciones y más renders del expediente cuando estén disponibles.
-            </p>
-          </div>
-
-          <ProjectImageGallery images={projectGallery} title={project.title} />
-          <div className="hidden">
-            {projectGallery.map((image, index) => (
-              <article
-                key={`${image}-${index}`}
-                className={index === 0 ? "md:col-span-2" : ""}
-              >
-                <div className={`relative overflow-hidden rounded-[8px] border border-[#d8d3cc] bg-white shadow-[0_25px_80px_rgba(37,35,32,0.08)] ${index === 0 ? "aspect-[16/8]" : "aspect-[4/3]"}`}>
-                  <Image
-                    src={image}
-                    alt={`${project.title} imagen ${index + 1}`}
-                    fill
-                    className="object-cover"
-                    sizes={index === 0 ? "100vw" : "(max-width: 768px) 100vw, 50vw"}
-                  />
-                </div>
-                <p className="mt-3 text-xs font-bold uppercase text-[#7b4a39]">
-                  {String(index + 1).padStart(2, "0")} / {index === 0 ? "Vista principal" : index === 1 ? "Vista complementaria" : index === 2 ? "Detalle / interior" : "Revisión visual"}
-                </p>
-              </article>
-            ))}
-          </div>
-
-          <div className="mt-16 grid gap-5 border-t border-[#d8d3cc] pt-8 md:grid-cols-3">
-            <div>
-              <h3 className="text-2xl font-light">Planos y expediente</h3>
-            </div>
-            <p className="text-sm leading-6 text-[#6b6660]">
-              La estructura de esta página permite agregar láminas de planta, cortes, elevaciones y detalles técnicos como imágenes adicionales.
-            </p>
-            <a
-              href={whatsappHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex h-12 items-center justify-center rounded-full bg-[#7b4a39] px-6 text-sm font-bold text-white transition hover:bg-[#252320]"
-            >
-              Cotizar un proyecto similar
-            </a>
-          </div>
-        </div>
+      <figure className="project-cover"><Image src={project.cover} alt={`Vista principal de ${project.title}`} width={coverSize[0]} height={coverSize[1]} sizes="90vw" priority /><figcaption><span>{project.title}</span><span>ARQUITECTURA CIM</span></figcaption></figure>
+      <section className="project-description editorial-section" aria-labelledby="project-about">
+        <div><p className="eyebrow">01 / EL PROYECTO</p><h2 id="project-about">{project.subtitle}</h2><p className="project-summary">{project.summary}</p></div>
+        <div className="project-meta"><dl><div><dt>Tipología</dt><dd>{project.category}</dd></div><div><dt>Ubicación</dt><dd>{project.location}</dd></div><div><dt>Año</dt><dd>{project.year}</dd></div></dl><div className="project-scope"><p className="eyebrow">DESARROLLO DEL PROYECTO</p><ul>{project.deliverables.map(item => <li key={item}>{item}</li>)}</ul></div><a className="text-button" href={whatsappHref} target="_blank" rel="noopener noreferrer">Conversemos sobre tu proyecto <ArrowUpRight size={18} aria-hidden="true" /></a></div>
       </section>
+      <section id="galeria" className="project-gallery-section editorial-section" aria-labelledby="gallery-heading"><div className="section-heading"><p className="eyebrow">02 / GALERÍA</p><div><h2 id="gallery-heading">Una mirada<br />al diseño.</h2><p className="gallery-intro">Amplía las imágenes para descubrir los materiales, la luz y los detalles de cada espacio.</p></div></div><ProjectImageGallery key={project.slug} images={project.gallery} title={project.title} /></section>
+      <section className="project-next editorial-section" aria-labelledby="next-project"><div className="project-next-heading"><p className="eyebrow">SIGUE EXPLORANDO</p><Link href="/#proyectos" className="text-button">Todos los proyectos <ArrowUpRight size={17} aria-hidden="true" /></Link></div><Link className="project-next-link" href={`/proyectos/${nextProject.slug}`}><div className="project-next-image"><Image src={nextProject.cover} alt={nextProject.title} fill sizes="90vw" /></div><div className="project-next-caption"><h2 id="next-project">{nextProject.title}</h2><ArrowUpRight size={38} strokeWidth={1} aria-hidden="true" /></div></Link></section>
     </main>
-  )
+    <CimFooter />
+  </div>
 }

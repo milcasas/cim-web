@@ -1,19 +1,14 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
 import "./globals.css"
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-})
+import "./editorial.css"
+import { CimMotion } from "@/components/cim-motion"
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://constructoracim.example"),
-  title: "Constructora CIM | Arquitectura, diseño y construcción",
+  metadataBase: new URL("https://cim-web.vercel.app"),
+  title: "CIM | Design Studio",
   description:
-    "Constructora CIM desarrolla proyectos arquitectónicos, documentación técnica y renders para construir con mayor claridad.",
+    "CIM Design Studio desarrolla proyectos arquitectónicos, documentación técnica y renders para construir con mayor claridad.",
   generator: "Codex",
   icons: {
     icon: [
@@ -23,35 +18,32 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
   },
   alternates: {
-    canonical: "https://constructoracim.example/",
+    canonical: "https://cim-web.vercel.app/",
   },
   openGraph: {
-    siteName: "Constructora CIM",
-    title: "Arquitectura, diseño y construcción | Constructora CIM",
+    siteName: "CIM Design Studio",
+    title: "CIM | Design Studio",
     description: "Proyectos arquitectónicos y renders para decidir mejor antes de construir.",
     type: "website",
-    url: "https://constructoracim.example/",
+    url: "https://cim-web.vercel.app/",
     images: [
       {
-        url: "/cim-exterior-front.jpeg",
-        alt: "Render de fachada residencial de Constructora CIM",
-        width: 1200,
-        height: 630,
+        url: "/villavicencio/portada-escritorio-1920.webp",
+        alt: "Render de fachada residencial de CIM Design Studio",
       },
     ],
     locale: "es_PE",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arquitectura, diseño y construcción | Constructora CIM",
+    title: "CIM | Design Studio",
     description: "Proyectos arquitectónicos y renders para decidir mejor antes de construir.",
     images: [
       {
-        url: "/cim-exterior-front.jpeg",
-        alt: "Render de fachada residencial de Constructora CIM",
+        url: "/villavicencio/portada-escritorio-1920.webp",
+        alt: "Render de fachada residencial de CIM Design Studio",
       },
     ],
-    site: "@constructoracim",
   },
 }
 
@@ -61,8 +53,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" className={`${inter.variable} antialiased`}>
-      <body className="font-sans bg-[#f4f3f1] text-[#252320] overflow-x-hidden">{children}</body>
+    <html lang="es" className="antialiased">
+      <body className="font-sans bg-[#f3f2ee] text-[#1b1c1b] overflow-x-hidden">{children}<CimMotion /></body>
     </html>
   )
 }

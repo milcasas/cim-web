@@ -30,3 +30,14 @@ tmp-contact-sheets/
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local review evidence and release backups
+/*.jpg
+/*.png
+/*.zip
+/preview.*.log
+/revision-*.json
+/staff-captura-area.json
+/design-qa.md
+/PUBLICACION-*.md
+/VISTA-PREVIA.md

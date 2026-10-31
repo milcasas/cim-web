@@ -1,0 +1,64 @@
+.staff-intro { padding-top: 155px; padding-bottom: 0; }
+.staff-breadcrumb { display: flex; gap: 16px; font-size: 9px; letter-spacing: .09em; margin-bottom: 65px; color: #62645d; }
+.staff-breadcrumb a { color: #1b1c1b; }
+.staff-intro-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 7%; align-items: end; margin-top: 30px; }
+.editorial .staff-intro h1 { font-size: clamp(44px,5.8vw,100px); font-weight: 400; line-height: 1.02; letter-spacing: -.05em; }
+.staff-intro-copy { max-width: 320px; }
+.staff-intro-copy p:first-child { font-size: 20px; line-height: 1.3; letter-spacing: -.02em; margin-bottom: 20px; }
+.staff-intro-copy p:nth-child(2) { font-size: 13px; line-height: 1.65; color: #62645d; }
+.staff-intro-copy > span { display: block; font-size: 9px; letter-spacing: .12em; margin-top: 27px; }
+.staff-area-nav { display: flex; flex-wrap: wrap; gap: 15px 35px; border-block: 1px solid #c6c7be; padding: 24px 0; margin-top: 65px; }
+.staff-area-nav a { font-size: 12px; display: inline-flex; align-items: baseline; gap: 8px; padding-block: 5px; transition: opacity .25s; }
+.staff-area-nav a:hover { opacity: .5; }
+.staff-area-nav a span { font-size: 8px; color: #777a70; }
+.staff-area { padding-top: 75px; padding-bottom: 25px; }
+.staff-area-heading { display: grid; grid-template-columns: 1fr 3fr auto; align-items: baseline; gap: 25px; border-bottom: 1px solid #c6c7be; padding-bottom: 25px; margin-bottom: 35px; }
+.editorial .staff-area-heading h2 { font-size: clamp(28px,3.3vw,54px); line-height: 1.08; }
+.staff-area-count { font-size: 11px; color: #62645d; }
+.staff-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 45px 25px; }
+.staff-member { min-width: 0; }
+.staff-portrait { position: relative; aspect-ratio: 4/5; overflow: hidden; background: #b4b2a7; }
+.staff-portrait img { object-fit: cover; transition: transform 1s cubic-bezier(.22,1,.36,1); }
+@media (hover: hover) { .staff-member:hover .staff-portrait img { transform: scale(1.025); } }
+.staff-member-info { padding-top: 20px; }
+.editorial .staff-member h3, .editorial .staff-member h4 { font-size: clamp(16px,1.5vw,24px); line-height: 1.2; font-weight: 400; letter-spacing: -.035em; }
+.staff-subarea { margin-top: 60px; }
+.editorial .staff-subarea > h3 { font-size: clamp(22px,2.3vw,35px); font-weight: 400; letter-spacing: -.035em; border-bottom: 1px solid #c6c7be; padding-bottom: 20px; margin-bottom: 30px; }
+.staff-role { font-size: 12px; line-height: 1.5; margin-top: 9px !important; }
+.staff-profession { font-size: 10px; line-height: 1.4; color: #777a70; margin-top: 6px !important; }
+.staff-footer { margin-top: 95px; background: #1b1c1b; color: white; padding-bottom: 35px; }
+.staff-footer-title { display: flex; align-items: center; justify-content: space-between; font-size: clamp(45px,7vw,110px); letter-spacing: -.05em; line-height: 1.1; margin-top: 35px; }
+.staff-footer-title svg { transition: transform .5s; }
+.staff-footer-title:hover svg { transform: translate(4px,-4px); }
+.staff-footer-bottom { border-top: 1px solid #ffffff30; margin-top: 70px; padding-top: 30px; display: flex; align-items: center; justify-content: space-between; gap: 25px; }
+.staff-footer-bottom img { filter: brightness(0) invert(1); }
+.staff-footer-bottom p { font-size: 9px; color: #999; }
+.menu-navigation a[aria-current="page"] { color: #aaa; }
+.studio-staff-link { margin-top: 45px; }
+@media (max-width: 1000px) {
+  .staff-intro-grid { grid-template-columns: 1fr; gap: 30px; }
+  .staff-intro-copy { max-width: 480px; }
+  .staff-intro-copy p:first-child { font-size: 18px; }
+  .staff-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .staff-area-heading { grid-template-columns: 1fr auto; gap: 16px; }
+  .staff-area-heading > .eyebrow { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .staff-intro { padding-top: 125px; padding-bottom: 0; }
+  .staff-breadcrumb { margin-bottom: 45px; }
+  .editorial .staff-intro h1 { font-size: 43px; }
+  .staff-area-nav { gap: 12px 23px; margin-top: 40px; padding: 20px 0; }
+  .staff-area-nav a { font-size: 11px; }
+  .staff-area { padding-top: 55px; padding-bottom: 0; }
+  .staff-area-heading { margin-bottom: 25px; padding-bottom: 20px; }
+  .editorial .staff-area-heading h2 { font-size: 33px; }
+  .staff-grid { grid-template-columns: 1fr; gap: 35px; }
+  .editorial .staff-member h3, .editorial .staff-member h4 { font-size: 22px; }
+  .staff-member-info { padding-top: 17px; }
+  .staff-role { font-size: 13px; }
+  .staff-profession { font-size: 11px; }
+  .staff-footer { margin-top: 70px; }
+  .staff-footer-title svg { width: 35px; height: 35px; }
+  .staff-footer-bottom { flex-wrap: wrap; gap: 25px; margin-top: 45px; }
+  .staff-footer-bottom > .text-button { order: 3; width: 100%; justify-content: space-between; }
+}

@@ -14,6 +14,19 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "miguel-villavicencio",
+    title: "Miguel Villavicencio",
+    subtitle: "Arquitectura residencial contemporánea",
+    category: "Arquitectura residencial",
+    location: "Perú",
+    year: "2024",
+    cover: "/villavicencio/portada-escritorio-2560.webp",
+    stat: "01",
+    summary: "Una propuesta de volúmenes definidos, piedra y vegetación. Los balcones, la iluminación y el contraste de materiales construyen el carácter de la fachada.",
+    gallery: ["/villavicencio/portada-escritorio-2560.webp", "/villavicencio/detalle-fachada-1200.webp", "/villavicencio/portada-celular-1200.webp"],
+    deliverables: ["Diseño de fachada", "Vistas exteriores", "Materialidad e iluminación"],
+  },
+  {
     slug: "residencia-sol",
     title: "Residencia Sol",
     subtitle: "Residencia multifamiliar",

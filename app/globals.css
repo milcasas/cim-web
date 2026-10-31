@@ -73,8 +73,8 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-inter);
-  --font-serif: Georgia, "Times New Roman", serif;
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-serif: Arial, Helvetica, sans-serif;
   --font-mono: Consolas, "Courier New", monospace;
 
   /* KATACHI Studio Color System */
