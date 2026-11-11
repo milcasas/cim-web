@@ -1,0 +1,30 @@
+.cim-intro { display: none; }
+html[data-cim-intro="play"] { overflow-y: hidden; scrollbar-gutter: stable; background: #000; }
+html[data-cim-intro="play"]::-webkit-scrollbar-track,
+html[data-cim-intro="play"]::-webkit-scrollbar-thumb { background: #000; }
+html[data-cim-intro="play"] .cim-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background: #000;
+  pointer-events: auto;
+  animation: cim-intro-exit 250ms cubic-bezier(.22,1,.36,1) 1700ms both;
+}
+.cim-intro-logo { display: block; width: clamp(112px, 10vw, 148px); height: auto; filter: invert(1); }
+.cim-trace { stroke-dasharray: 1; stroke-dashoffset: 1; animation: cim-logo-trace 950ms cubic-bezier(.33,0,.2,1) both; }
+.cim-trace-base { animation-duration: 360ms; }
+.cim-trace-left { animation-delay: 160ms; }
+.cim-trace-centre { animation-delay: 300ms; }
+.cim-trace-front { animation-delay: 440ms; animation-duration: 1000ms; }
+.cim-trace-detail { animation-delay: 1000ms; animation-duration: 440ms; }
+.cim-trace-complete { opacity: 0; animation: cim-logo-complete 110ms ease-out 1440ms both; }
+html[data-cim-intro="play"] :is(.hero-picture, .hero-title, .hero-subtitle) { animation-play-state: paused; }
+@keyframes cim-logo-trace { to { stroke-dashoffset: 0; } }
+@keyframes cim-logo-complete { to { opacity: 1; } }
+@keyframes cim-intro-exit { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+@media (prefers-reduced-motion: reduce) {
+  html[data-cim-intro="play"] .cim-intro { display: none; animation: none; }
+  html[data-cim-intro="play"] :is(.hero-picture, .hero-title, .hero-subtitle) { animation-play-state: running; }
+}
